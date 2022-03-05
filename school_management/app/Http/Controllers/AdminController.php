@@ -27,4 +27,8 @@ class AdminController extends Controller
            return redirect()->back();
         }
     }
+    public function logout(Request $req){
+    	$req->session()->forget(['ADMIN_LOGIN','ADMIN_ID']);
+    	return redirect('/admin');
+    }
 }
