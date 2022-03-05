@@ -22,4 +22,7 @@ Route::get('/', function () {
 Route::get('/admin',[AdminController::class,'admin_login_form']);
 Route::post('/admin_login',[AdminController::class,'admin_login']);
 Route::get('/admin/logout',[AdminController::class,'logout']);
-Route::get('/dashboard',[DashboardController::class,'home']);
+//Admin Middleware
+Route::group(['middleware'=>'admin_auth'],function () {
+	Route::get('/dashboard',[DashboardController::class,'home']);
+});
