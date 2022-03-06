@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClassNameController;
+use App\Http\Controllers\YearController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,10 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/class_delete/{id}',[ClassNameController::class,'delete']);
 	Route::get('/class_edit/{id}',[ClassNameController::class,'edit']);
 	Route::post('/update_class',[ClassNameController::class,'update']);
+	//Year
+	Route::get('/year_list',[YearController::class,'list']);
+	Route::get('/year_add_form',[YearController::class,'show_form']);
+	Route::post('/add_year',[YearController::class,'add_form']);
+	Route::get('/year_edit/{id}',[YearController::class,'edit']);
+	Route::post('/update_year',[YearController::class,'update']);
 });

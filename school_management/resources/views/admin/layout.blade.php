@@ -57,6 +57,7 @@
                    <li><a><i class="fa fa-edit"></i> Setup Management <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{url('class_list')}}">Student Class</span></a></li>
+                      <li><a href="{{url('year_list')}}">Year</span></a></li>
                     </ul>
                   </li>
                 </ul>
