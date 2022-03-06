@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClassNameController;
 use App\Http\Controllers\YearController;
+use App\Http\Controllers\GroupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,11 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/add_year',[YearController::class,'add_form']);
 	Route::get('/year_edit/{id}',[YearController::class,'edit']);
 	Route::post('/update_year',[YearController::class,'update']);
+	//Group
+	Route::get('/group_list',[GroupController::class,'list']);
+	Route::get('/group_add_form',[GroupController::class,'show_form']);
+	Route::post('/add_group',[GroupController::class,'add_form']);
+	Route::get('/group_delete/{id}',[GroupController::class,'delete']);
+	Route::get('/group_edit/{id}',[GroupController::class,'edit']);
+	Route::post('/update_group',[GroupController::class,'update']);
 });
