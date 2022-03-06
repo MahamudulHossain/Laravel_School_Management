@@ -30,5 +30,7 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/class_list',[ClassNameController::class,'list']);
 	Route::get('/class_add_form',[ClassNameController::class,'show_form']);
 	Route::post('/add_class',[ClassNameController::class,'add_form']);
-	
+	Route::get('/class_delete/{id}',[ClassNameController::class,'delete']);
+	Route::get('/class_edit/{id}',[ClassNameController::class,'edit']);
+	Route::post('/update_class',[ClassNameController::class,'update']);
 });

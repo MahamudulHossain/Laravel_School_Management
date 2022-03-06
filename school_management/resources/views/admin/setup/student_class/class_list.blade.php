@@ -54,8 +54,8 @@
 	      <td>{{++$key}}</td>
 	      <td>{{$cl->name}}</td>
 	      <td>
-	      	<button class="btn btn-sm btn-primary">Edit</button>
-	      	<button class="btn btn-sm btn-danger">Delete</button>
+	      	<a href="{{url('class_edit')}}/{{$cl->id}}"><button class="btn btn-sm btn-primary">Edit</button></a>
+	      	<a onclick="return confirm('Do you sure to delete?')" href="{{url('class_delete')}}/{{$cl->id}}"><button class="btn btn-sm btn-danger">Delete</button></a>
 	      </td>
 	    </tr>
 	    @endforeach
