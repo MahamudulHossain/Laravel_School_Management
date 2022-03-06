@@ -11,7 +11,14 @@
 			<div class="form-group row">
 				<label class="col-form-label col-md-3 col-sm-3 ">Class Name</label>
 				<div class="col-md-9 col-sm-9 ">
-					<input type="text" class="form-control" placeholder="Class Name" required="required" name="name">
+					<input type="text" class="form-control" placeholder="Class Name"  name="name">
+					 @if ($errors->any())
+					 <div class="alert alert-danger">
+			         @foreach ($errors->all() as $error)
+			            {{ $error }}
+			         @endforeach
+    				 </div>
+					 @endif
 				</div>
 			</div>
 			<div class="ln_solid"></div>
@@ -21,8 +28,8 @@
 					<button type="submit" class="btn btn-success">Submit</button>
 				</div>
 			</div>
-
 		</form>
+
 	</div>  
 
 @endsection
