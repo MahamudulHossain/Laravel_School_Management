@@ -14,9 +14,12 @@
     <link href="{{asset('assets/admin/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="{{asset('assets/admin/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <!-- Custom Theme Style -->
     <link href="{{asset('assets/admin/build/css/custom.min.css')}}" rel="stylesheet">
+
+    @yield('head_link')
   </head>
 
   <body class="nav-md">
@@ -85,7 +88,7 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <div class="row" style="display: inline-block;" >
+          <div class="row" >
 
             @yield('content')
 
@@ -105,6 +108,7 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{{asset('assets/admin/build/js/custom.min.js')}}"></script>
-  
+    @yield('scripts')
+    
   </body>
 </html>            
