@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClassNameController;
 use App\Http\Controllers\YearController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\ShiftController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +49,11 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/group_delete/{id}',[GroupController::class,'delete']);
 	Route::get('/group_edit/{id}',[GroupController::class,'edit']);
 	Route::post('/update_group',[GroupController::class,'update']);
+	//Shift
+	Route::get('/shift_list',[ShiftController::class,'list']);
+	Route::get('/shift_add_form',[ShiftController::class,'show_form']);
+	Route::post('/add_shift',[ShiftController::class,'add_form']);
+	Route::get('/shift_delete/{id}',[ShiftController::class,'delete']);
+	Route::get('/shift_edit/{id}',[ShiftController::class,'edit']);
+	Route::post('/update_shift',[ShiftController::class,'update']);
 });
