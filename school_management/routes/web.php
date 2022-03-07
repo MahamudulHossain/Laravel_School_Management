@@ -8,6 +8,7 @@ use App\Http\Controllers\YearController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\FeeController;
+use App\Http\Controllers\FeeAmountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,4 +65,11 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/fee_delete/{id}',[FeeController::class,'delete']);
 	Route::get('/fee_edit/{id}',[FeeController::class,'edit']);
 	Route::post('/update_fee',[FeeController::class,'update']);
+	//Fee Amount
+	Route::get('/fee_amount_list',[FeeAmountController::class,'list']);
+	Route::get('/fee_amount_add_form',[FeeAmountController::class,'show_form']);
+	Route::post('/add_fee_amount',[FeeAmountController::class,'add_form']);
+	Route::get('/fee_amount_delete/{id}',[FeeAmountController::class,'delete']);
+	Route::get('/fee_amount_edit/{id}',[FeeAmountController::class,'edit']);
+	Route::post('/update_fee_amount',[FeeAmountController::class,'update']);
 });
