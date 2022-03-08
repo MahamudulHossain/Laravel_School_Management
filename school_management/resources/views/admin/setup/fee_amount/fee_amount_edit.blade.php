@@ -6,7 +6,7 @@
 <h2>Edit Fee Amount</h2>
 <div class="x_content">
 		<br />
-		<form class="form-label-left input_mask" method="post" action="{{url('update_fee_amount')}}">
+		<form class="form-label-left input_mask" method="post" action="{{url('update_fee_amount/'.$editData[0]->fee_id)}}">
 			@csrf
 			<div class="form-group row">
 				<label class="col-form-label col-md-3 col-sm-3 ">Fee Type</label>
@@ -57,8 +57,7 @@
 			<div class="ln_solid"></div>
 			<div class="form-group row">
 				<div class="col-md-9 col-sm-9  offset-md-3">
-					<button class="btn btn-primary" type="reset">Reset</button>
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-success">Update</button>
 				</div>
 			</div>
 		</form>
