@@ -44,9 +44,7 @@
 	  <thead>
 	    <tr>
 	      <th>SL.</th>
-        <th>Class</th>
         <th>Fee Type</th>
-	      <th>Fee Amount</th>
 	      <th>Action</th>
 	    </tr>
 	  </thead>
@@ -54,12 +52,9 @@
 	  	@foreach($feeAmount as $key=>$cl)
 	    <tr>
 	      <td>{{++$key}}</td>
-        <td>{{$cl->amount}}</td>
-        <td>{{$cl->name}}</td>
-	      <td>{{$cl->name}}</td>
+        <td>{{$cl->get_fee_type->name}}</td>
 	      <td>
-	      	<a href="{{url('fee_edit')}}/{{$cl->id}}"><button class="btn btn-sm btn-primary">Edit</button></a>
-          <a onclick="return confirm('Do you sure to delete?')" href="{{url('fee_delete')}}/{{$cl->id}}"><button class="btn btn-sm btn-danger">Delete</button></a>
+	      	<a href="{{url('fee_amount_edit')}}/{{$cl->fee_id}}"><button class="btn btn-sm btn-primary">Edit</button></a>
 	      </td>
 	    </tr>
 	    @endforeach

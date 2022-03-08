@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FeeAmount extends Model
 {
     use HasFactory;
+    public function get_fee_type(){
+    	return $this->belongsTo(Fee::class,'fee_id','id');
+    }
 }
