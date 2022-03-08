@@ -11,4 +11,7 @@ class FeeAmount extends Model
     public function get_fee_type(){
     	return $this->belongsTo(Fee::class,'fee_id','id');
     }
+    public function get_class_name(){
+    	return $this->belongsTo(ClassName::class,'class_name_id','id');
+    }
 }

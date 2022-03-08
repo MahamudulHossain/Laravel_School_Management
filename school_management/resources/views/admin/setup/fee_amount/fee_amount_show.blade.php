@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title','Fee Amount List')
+@section('title','Fee Amount Details')
 
 @section('head_link')
 
@@ -28,7 +28,7 @@
 @endif
 <div class="page-title">
   <div class="title_left">
-    <h3>Fee Amount</h3>
+    <h3>{{$showData[0]->get_fee_type->name}} Fee Amount</h3>
   </div>
 
   <div class="title_right">
@@ -44,19 +44,16 @@
 	  <thead>
 	    <tr>
 	      <th>SL.</th>
-        <th>Fee Type</th>
-	      <th>Action</th>
+        <th>Class</th>
+	      <th>Amount</th>
 	    </tr>
 	  </thead>
 	  <tbody>
-	  	@foreach($feeAmount as $key=>$cl)
+	  	@foreach($showData as $key=>$sD)
 	    <tr>
 	      <td>{{++$key}}</td>
-        <td>{{$cl->get_fee_type->name}}</td>
-	      <td>
-          <a href="{{url('fee_amount_show')}}/{{$cl->fee_id}}"><button class="btn btn-sm btn-success">Show</button></a>
-	      	<a href="{{url('fee_amount_edit')}}/{{$cl->fee_id}}"><button class="btn btn-sm btn-primary">Edit</button></a>
-	      </td>
+        <td>{{$sD->get_class_name->name}}</td>
+        <td>{{$sD->amount}}</td>
 	    </tr>
 	    @endforeach
 	  </tbody>

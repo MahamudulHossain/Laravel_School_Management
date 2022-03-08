@@ -67,6 +67,7 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/update_fee',[FeeController::class,'update']);
 	//Fee Amount
 	Route::get('/fee_amount_list',[FeeAmountController::class,'list']);
+	Route::get('/fee_amount_show/{fee_id}',[FeeAmountController::class,'show']);
 	Route::get('/fee_amount_add_form',[FeeAmountController::class,'show_form']);
 	Route::get('/get_class_name',[FeeAmountController::class,'class_name_ajax']);
 	Route::post('/add_fee_amount',[FeeAmountController::class,'add_form']);

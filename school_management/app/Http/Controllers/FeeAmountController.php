@@ -55,4 +55,8 @@ class FeeAmountController extends Controller
     	$req->session()->flash('message','Fee Amount Updated Successfully');
         return redirect('/fee_amount_list');
     }
+    public function show(Request $req,$fee_id){
+    	$data['showData'] = FeeAmount::where('fee_id',$fee_id)->get();
+    	return view('admin.setup.fee_amount.fee_amount_show',$data);
+    }
 }
