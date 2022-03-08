@@ -19,4 +19,8 @@ class FeeAmountController extends Controller
     	$data['fee'] = Fee::all();
     	return view('admin.setup.fee_amount.fee_amount_add_form',$data);
     }
+    public function class_name_ajax(Request $req){
+    	$clData = ClassName::all();
+    	return response()->json(['data'=>$clData]); 
+    }
 }
