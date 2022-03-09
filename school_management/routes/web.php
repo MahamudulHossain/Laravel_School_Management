@@ -9,6 +9,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\FeeController;
 use App\Http\Controllers\FeeAmountController;
+use App\Http\Controllers\ExamtypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,4 +74,10 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/add_fee_amount',[FeeAmountController::class,'add_form']);
 	Route::get('/fee_amount_edit/{fee_id}',[FeeAmountController::class,'edit']);
 	Route::post('/update_fee_amount/{fee_id}',[FeeAmountController::class,'update']);
+	//Exam Type
+	Route::get('/exam_type_list',[ExamtypeController::class,'list']);
+	Route::get('/exam_type_add_form',[ExamtypeController::class,'show_form']);
+	Route::post('/add_exam_type',[ExamtypeController::class,'add_form']);
+	Route::get('/exam_type_edit/{id}',[ExamtypeController::class,'edit']);
+	Route::post('/update_exam_type',[ExamtypeController::class,'update']);
 });
