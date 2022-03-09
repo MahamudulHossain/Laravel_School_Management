@@ -63,6 +63,7 @@
                       <li><a href="{{url('fee_list')}}">Fees</span></a></li>
                       <li><a href="{{url('fee_amount_list')}}">Fees Amount</span></a></li>
                       <li><a href="{{url('exam_type_list')}}">Exam Type</span></a></li>
+                      <li><a href="{{url('subject_list')}}">Subjects</span></a></li>
                     </ul>
                   </li>
                 </ul>
