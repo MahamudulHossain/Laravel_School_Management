@@ -11,6 +11,7 @@ use App\Http\Controllers\FeeController;
 use App\Http\Controllers\FeeAmountController;
 use App\Http\Controllers\ExamtypeController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\AssignSubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,4 +88,11 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/add_subject',[SubjectController::class,'add_form']);
 	Route::get('/subject_edit/{id}',[SubjectController::class,'edit']);
 	Route::post('/update_subject',[SubjectController::class,'update']);
+	//Assign Subject
+	Route::get('/assign_subject_list',[AssignSubjectController::class,'list']);
+	Route::get('/assign_subject_show/{class_id}/{grp_id}',[AssignSubjectController::class,'show']);
+	Route::get('/assign_subject_add_form',[AssignSubjectController::class,'show_form']);
+	Route::post('/add_assign_subject',[AssignSubjectController::class,'add_form']);
+	Route::get('/assign_subject_edit/{class_id}/{grp_id}',[AssignSubjectController::class,'edit']);
+	Route::post('/update_assign_subject',[AssignSubjectController::class,'update']);
 });
