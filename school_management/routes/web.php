@@ -92,6 +92,7 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/assign_subject_list',[AssignSubjectController::class,'list']);
 	Route::get('/assign_subject_show/{class_id}/{grp_id}',[AssignSubjectController::class,'show']);
 	Route::get('/assign_subject_add_form',[AssignSubjectController::class,'show_form']);
+	Route::get('/get_subject',[AssignSubjectController::class,'subject_ajax']);
 	Route::post('/add_assign_subject',[AssignSubjectController::class,'add_form']);
 	Route::get('/assign_subject_edit/{class_id}/{grp_id}',[AssignSubjectController::class,'edit']);
 	Route::post('/update_assign_subject',[AssignSubjectController::class,'update']);

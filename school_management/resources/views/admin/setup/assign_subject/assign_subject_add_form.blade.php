@@ -90,14 +90,14 @@
 		$(document).on('click','.addMoreBtn',function(e){
 			e.preventDefault();
 			$.ajax({
-			url: "{{url('get_class_name')}}",
+			url: "{{url('get_subject')}}",
 			type: "GET",
 			success: function(result){
-				var html = '<tr><td><div class="form-group row test"><div class="col-md-5"><label class="col-form-label col-md-3 col-sm-3 ">Class</label><div class="col-md-9 col-sm-9 "><select class="form-control" required="required" name="class_name_id[]"><option value="">Select Class</option>';
+				var html = '<tr><td><div class="form-group row"><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Subject</label><div class="col-md-9 col-sm-9 "><select class="form-control" name="subject_id"><option value="">Select Subject</option>';
 				$.each(result.data,function(key,val){
 					html += '<option value="'+val.id+'">'+val.name+'</option>';
 				});
-					html += '</select></div></div><div class="col-md-5"><label class="col-form-label col-md-3 col-sm-3 ">Fee Type</label><div class="col-md-9 col-sm-9 "><input type="number" name="amount[]" required="required" class="form-control" placeholder="Fee amount"></div></div><div class="col-md-2"><button class="btn btn-sm btn-danger" onclick="removeMoreBtn(this)">Delete</button></div></div></td></tr>';
+					html += '</select></div></div><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Subjective Mark</label><div class="col-md-9 col-sm-9 "><input type="number" name="subjective[]" required="required" class="form-control" placeholder="Subjective Mark"></div></div><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Subjective Pass Mark</label><div class="col-md-9 col-sm-9 "><input type="number" name="subjective_pass_mark[]" required="required" class="form-control" placeholder="Subjective Pass Mark"></div></div></div><div class="form-group row"><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Objective Mark</label><div class="col-md-9 col-sm-9 "><input type="number" name="objective[]" required="required" class="form-control" placeholder="Objective Mark"></div></div><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Objective Pass Mark</label><div class="col-md-9 col-sm-9 "><input type="number" name="objective_pass_mark[]" required="required" class="form-control" placeholder="Objective Pass Mark"></div></div><div class="col-md-4"><button class="btn btn-danger" onclick="removeMoreBtn(this)">Remove</button></div></div></td></tr>';
 					$("#addRow").append(html);
 			}
 		});

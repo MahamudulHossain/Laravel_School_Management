@@ -19,4 +19,8 @@ class AssignSubjectController extends Controller
     	$data['subject'] = Subject::all();
     	return view('admin.setup.assign_subject.assign_subject_add_form',$data);
     }
+    public function subject_ajax(Request $req){
+    	$subData = Subject::all();
+    	return response()->json(['data'=>$subData]); 
+    }
 }
