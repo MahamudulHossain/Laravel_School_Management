@@ -52,7 +52,12 @@
 	  	@foreach($assignSubject as $key=>$aS)
 	    <tr>
 	      <td>{{++$key}}</td>
-        <td>{{$aS->class_name_id}}</td>
+        <td>
+          {{$aS->class_name_id}}
+          @if($aS->group_id != null)
+            ({{$aS->group_id}})
+          @endif
+        </td>
 	      <td>
           <a href="{{url('assign_subject_show')}}/{{$aS->class_name_id}}/{{$aS->group_id}}"><button class="btn btn-sm btn-success">Show</button></a>
 	      	<a href="{{url('assign_subject_edit')}}/{{$aS->class_name_id}}/{{$aS->group_id}}"><button class="btn btn-sm btn-primary">Edit</button></a>

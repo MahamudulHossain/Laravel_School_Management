@@ -32,7 +32,7 @@
 				<div class="col-md-4">
 					<label class="col-form-label col-md-3 col-sm-3 ">Subject</label>
 					<div class="col-md-9 col-sm-9 ">
-						<select class="form-control" name="subject_id">
+						<select class="form-control" name="subject_id[]">
 						<option value="">Select Subject</option>
 						@foreach($subject as $sub)
 						<option value="{{$sub->id}}">{{$sub->name}}</option>
@@ -57,13 +57,13 @@
 				<div class="col-md-4">
 					<label class="col-form-label col-md-3 col-sm-3 ">Objective Mark</label>
 					<div class="col-md-9 col-sm-9 ">
-						<input type="number" name="objective[]" required="required" class="form-control" placeholder="Objective Mark">
+						<input type="number" name="objective[]" class="form-control" placeholder="Objective Mark">
 					</div>
 				</div>
 				<div class="col-md-4">
 					<label class="col-form-label col-md-3 col-sm-3 ">Objective Pass Mark</label>
 					<div class="col-md-9 col-sm-9 ">
-						<input type="number" name="objective_pass_mark[]" required="required" class="form-control" placeholder="Objective Pass Mark">
+						<input type="number" name="objective_pass_mark[]" class="form-control" placeholder="Objective Pass Mark">
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -93,11 +93,11 @@
 			url: "{{url('get_subject')}}",
 			type: "GET",
 			success: function(result){
-				var html = '<tr><td><div class="form-group row"><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Subject</label><div class="col-md-9 col-sm-9 "><select class="form-control" name="subject_id"><option value="">Select Subject</option>';
+				var html = '<tr><td><div class="form-group row"><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Subject</label><div class="col-md-9 col-sm-9 "><select class="form-control" name="subject_id[]"><option value="">Select Subject</option>';
 				$.each(result.data,function(key,val){
 					html += '<option value="'+val.id+'">'+val.name+'</option>';
 				});
-					html += '</select></div></div><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Subjective Mark</label><div class="col-md-9 col-sm-9 "><input type="number" name="subjective[]" required="required" class="form-control" placeholder="Subjective Mark"></div></div><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Subjective Pass Mark</label><div class="col-md-9 col-sm-9 "><input type="number" name="subjective_pass_mark[]" required="required" class="form-control" placeholder="Subjective Pass Mark"></div></div></div><div class="form-group row"><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Objective Mark</label><div class="col-md-9 col-sm-9 "><input type="number" name="objective[]" required="required" class="form-control" placeholder="Objective Mark"></div></div><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Objective Pass Mark</label><div class="col-md-9 col-sm-9 "><input type="number" name="objective_pass_mark[]" required="required" class="form-control" placeholder="Objective Pass Mark"></div></div><div class="col-md-4"><button class="btn btn-danger" onclick="removeMoreBtn(this)">Remove</button></div></div></td></tr>';
+					html += '</select></div></div><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Subjective Mark</label><div class="col-md-9 col-sm-9 "><input type="number" name="subjective[]" required="required" class="form-control" placeholder="Subjective Mark"></div></div><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Subjective Pass Mark</label><div class="col-md-9 col-sm-9 "><input type="number" name="subjective_pass_mark[]" required="required" class="form-control" placeholder="Subjective Pass Mark"></div></div></div><div class="form-group row"><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Objective Mark</label><div class="col-md-9 col-sm-9 "><input type="number" name="objective[]" class="form-control" placeholder="Objective Mark"></div></div><div class="col-md-4"><label class="col-form-label col-md-3 col-sm-3 ">Objective Pass Mark</label><div class="col-md-9 col-sm-9 "><input type="number" name="objective_pass_mark[]" class="form-control" placeholder="Objective Pass Mark"></div></div><div class="col-md-4"><button class="btn btn-danger" onclick="removeMoreBtn(this)">Remove</button></div></div></td></tr>';
 					$("#addRow").append(html);
 			}
 		});
