@@ -28,12 +28,22 @@ class AssignSubjectController extends Controller
     		for($i=0; $i< count($req->subject_id); $i++){
     			$data = new AssignSubject;
     			$data->class_name_id = $req->class_name_id;
-    			$data->group_id = $req->group_id;
+    			if($req->group_id == null){
+    				$data->group_id = 0;
+    			}else{
+    				$data->group_id = $req->group_id;
+    			}
+    			
     			$data->subject_id = $req->subject_id[$i];
     			$data->subjective = $req->subjective[$i];
     			$data->subjective_pass_mark = $req->subjective_pass_mark[$i];
-    			$data->objective = $req->objective[$i];
-    			$data->objective_pass_mark = $req->objective_pass_mark[$i];
+    			if($req->objective[$i] == null || $req->objective_pass_mark[$i]){
+    				$data->objective = 0;
+    				$data->objective_pass_mark = 0;
+    			}else{
+    				$data->objective = $req->objective[$i];
+    				$data->objective_pass_mark = $req->objective_pass_mark[$i];
+    			}
     			if($req->subjective[$i] != null){
     				$data->full_mark = $req->subjective[$i] + $req->objective[$i];
     			}else{
@@ -44,5 +54,9 @@ class AssignSubjectController extends Controller
     	}
     	$req->session()->flash('message','Subject Assigned Successfully');
         return redirect('/assign_subject_list');
+    }
+    public function show(Request $req,$class_id,$group_id){
+    	$data['showData'] = AssignSubject::where(['class_name_id'=>$class_id,'group_id'=>$group_id])->get();
+    	return view('admin.setup.assign_subject.assign_subject_show',$data);
     }
 }

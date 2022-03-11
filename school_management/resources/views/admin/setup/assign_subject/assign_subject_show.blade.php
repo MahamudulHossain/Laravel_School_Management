@@ -1,8 +1,7 @@
 @extends('admin.layout')
-@section('title','Fee Amount Details')
+@section('title','Assign Subject Details')
 
 @section('head_link')
-
 <script>
      $(document).ready(function(){
 	   $("#datatable").dataTable();
@@ -28,13 +27,13 @@
 @endif
 <div class="page-title">
   <div class="title_left">
-    <h3>{{$showData[0]->get_fee_type->name}} Fee Amount</h3>
+    <h3>Class: {{$showData[0]->get_class_name->name}} @if($showData[0]->group_id != 0) ({{$showData[0]->get_group_name->name}}) @endif</h3>
   </div>
 
   <div class="title_right">
     <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
       <div class="input-group">
-        <a href="{{url('/fee_amount_add_form')}}"><button class="btn btn-primary">Add Fee Amount Now!</button></a>
+        <a href="{{url('/assign_subject_add_form')}}"><button class="btn btn-primary">Assign Subject Now!</button></a>
       </div>
     </div>
   </div>
@@ -44,16 +43,24 @@
 	  <thead>
 	    <tr>
 	      <th>SL.</th>
-        <th>Class</th>
-	      <th>Amount</th>
+        <th>Subject</th>
+        <th>Subjective Mark</th>
+        <th>Subjective Pass Mark</th>
+        <th>Objective Mark</th>
+        <th>Objective Pass Mark</th>
+        <th>Total Mark</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	  	@foreach($showData as $key=>$sD)
 	    <tr>
 	      <td>{{++$key}}</td>
-        <td>{{$sD->get_class_name->name}}</td>
-        <td>{{$sD->amount}}</td>
+        <td>{{$sD->get_subject_name->name}}</td>
+        <td>{{$sD->subjective}}</td>
+        <td>{{$sD->subjective_pass_mark}}</td>
+        <td>{{$sD->objective}}</td>
+        <td>{{$sD->objective_pass_mark}}</td>
+        <td>{{$sD->full_mark}}</td>
 	    </tr>
 	    @endforeach
 	  </tbody>

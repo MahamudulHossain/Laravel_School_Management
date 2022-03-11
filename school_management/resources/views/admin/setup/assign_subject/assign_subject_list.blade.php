@@ -53,9 +53,9 @@
 	    <tr>
 	      <td>{{++$key}}</td>
         <td>
-          {{$aS->class_name_id}}
+          {{$aS->get_class_name->name}}
           @if($aS->group_id != null)
-            ({{$aS->group_id}})
+            ({{$aS->get_group_name->name}})
           @endif
         </td>
 	      <td>
