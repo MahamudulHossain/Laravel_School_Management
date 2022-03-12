@@ -12,6 +12,7 @@ use App\Http\Controllers\FeeAmountController;
 use App\Http\Controllers\ExamtypeController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\AssignSubjectController;
+use App\Http\Controllers\DesignationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,4 +97,10 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/add_assign_subject',[AssignSubjectController::class,'add_form']);
 	Route::get('/assign_subject_edit/{class_id}/{grp_id}',[AssignSubjectController::class,'edit']);
 	Route::post('/update_assign_subject/{class_id}/{grp_id}',[AssignSubjectController::class,'update']);
+	//Designation
+	Route::get('/designation_list',[DesignationController::class,'list']);
+	Route::get('/designation_add_form',[DesignationController::class,'show_form']);
+	Route::post('/add_designation',[DesignationController::class,'add_form']);
+	Route::get('/designation_edit/{id}',[DesignationController::class,'edit']);
+	Route::post('/update_designation',[DesignationController::class,'update']);
 });
