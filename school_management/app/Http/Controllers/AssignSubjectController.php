@@ -59,4 +59,12 @@ class AssignSubjectController extends Controller
     	$data['showData'] = AssignSubject::where(['class_name_id'=>$class_id,'group_id'=>$group_id])->get();
     	return view('admin.setup.assign_subject.assign_subject_show',$data);
     }
+    public function edit($class_id,$group_id){
+        $data['editData'] = AssignSubject::where(['class_name_id'=>$class_id,'group_id'=>$group_id])->get();
+        // dd($data['editData']->toarray());
+        $data['className'] = ClassName::all();
+        $data['subject'] = Subject::all();
+        $data['group'] = Group::all();
+        return view('admin.setup.assign_subject.assign_subject_edit',$data);
+    }
 }
