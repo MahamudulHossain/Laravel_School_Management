@@ -13,6 +13,7 @@ use App\Http\Controllers\ExamtypeController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,4 +104,11 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/add_designation',[DesignationController::class,'add_form']);
 	Route::get('/designation_edit/{id}',[DesignationController::class,'edit']);
 	Route::post('/update_designation',[DesignationController::class,'update']);
+	//Manage User
+	Route::get('/users_list',[UsersController::class,'list']);
+	Route::get('/users_add_form',[UsersController::class,'show_form']);
+	Route::post('/add_users',[UsersController::class,'add_form']);
+	Route::get('/users_edit/{id}',[UsersController::class,'edit']);
+	Route::post('/update_users',[UsersController::class,'update']);
+	Route::post('/users_delete/{id}',[UsersController::class,'update']);
 });
