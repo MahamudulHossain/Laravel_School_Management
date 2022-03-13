@@ -54,7 +54,12 @@
                 <ul class="nav side-menu">
                   <li><a href="{{url('admin')}}"><i class="fa fa-home"></i> Home </a>
                   </li>
-                   <li><a><i class="fa fa-edit"></i> Setup Management <span class="fa fa-chevron-down"></span></a>
+                   <li><a><i class="fa fa-user"></i> Setup Users <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{url('users_list')}}">Users</span></a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-edit"></i> Setup Management <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{url('class_list')}}">Student Class</span></a></li>
                       <li><a href="{{url('year_list')}}">Year</span></a></li>

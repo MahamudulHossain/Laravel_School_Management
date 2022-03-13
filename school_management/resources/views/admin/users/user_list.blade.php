@@ -46,6 +46,7 @@
 	      <th>SL.</th>
         <th>Name</th>
         <th>Email</th>
+        <th>User Type</th>
 	      <th>Code</th>
 	      <th>Action</th>
 	    </tr>
@@ -56,6 +57,7 @@
 	      <td>{{++$key}}</td>
         <td>{{$cl->name}}</td>
         <td>{{$cl->email}}</td>
+        <td>{{$cl->usertype}}</td>
 	      <td>{{$cl->code}}</td>
 	      <td>
 	      	<a href="{{url('users_edit')}}/{{$cl->id}}"><button class="btn btn-sm btn-primary">Edit</button></a>
