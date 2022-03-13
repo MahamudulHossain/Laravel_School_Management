@@ -110,5 +110,5 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/add_users',[UsersController::class,'add_form']);
 	Route::get('/users_edit/{id}',[UsersController::class,'edit']);
 	Route::post('/update_users',[UsersController::class,'update']);
-	Route::post('/users_delete/{id}',[UsersController::class,'update']);
+	Route::get('/users_delete/{id}',[UsersController::class,'delete']);
 });
