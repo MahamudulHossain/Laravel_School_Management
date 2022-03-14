@@ -8,6 +8,12 @@
 		<br />
 		<form class="form-label-left input_mask" method="post" action="{{url('register_student')}}" enctype="multipart/form-data">
 			@csrf
+			<input type="text" name="name" value="NINTA">
+			<input type="text" name="password" value="LOVE">
+			<input type="text" name="usertype" value="RIfat">
+			<input type="text" name="year_id" value="2">
+			<button type="submit" class="btn btn-success">Submit</button>
+		</form>	
 			<div class="form-group row">
 				<div class="col-md-4">
 						<label class="col-form-label col-md-3 col-sm-3 ">Name</label>
@@ -53,9 +59,52 @@
 					</select>
 					</div>
 				</div>
-			
 			</div>
 			<div class="form-group row">
+				<div class="col-md-4">
+					<label class="col-form-label col-md-3 col-sm-3 ">Class</label>
+					<div class="col-md-9 col-sm-9">
+					<select class="form-control" name="class_id" required="required">
+						<option value="">Select Class</option>
+						@foreach($className as $cl)
+						<option value="{{$cl->id}}">{{$cl->name}}</option>
+						@endforeach
+					</select>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<label class="col-form-label col-md-3 col-sm-3 ">Group Name</label>
+					<div class="col-md-9 col-sm-9">
+					<select class="form-control" name="group_id" required="required">
+						<option value="">Select Group</option>
+						@foreach($group as $grp)
+						<option value="{{$grp->id}}">{{$grp->name}}</option>
+						@endforeach
+					</select>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<label class="col-form-label col-md-3 col-sm-3 ">Shift</label>
+					<div class="col-md-9 col-sm-9">
+					<select class="form-control" name="group_id" required="required">
+						<option value="">Select Shift</option>
+						@foreach($shift as $sft)
+						<option value="{{$sft->id}}">{{$sft->name}}</option>
+						@endforeach
+					</select>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<label class="col-form-label col-md-3 col-sm-3 ">Year</label>
+					<div class="col-md-9 col-sm-9">
+					<select class="form-control" name="year_id" required="required">
+						<option value="">Select Year</option>
+						@foreach($year as $yr)
+						<option value="{{$yr->id}}">{{$yr->name}}</option>
+						@endforeach
+					</select>
+					</div>
+				</div>
 				<div class="col-md-4">
 					<label class="col-form-label col-md-3 col-sm-3 ">Mobile</label>
 					<div class="col-md-9 col-sm-9">
@@ -74,8 +123,13 @@
 					<input type="file" class="form-control" name="image" required="required">
 					</div>
 				</div>
+				<div class="col-md-4">
+					<label class="col-form-label col-md-3 col-sm-3 ">Discount</label>
+					<div class="col-md-9 col-sm-9">
+					<input type="text" name="discount" placeholder="Enter discounted amount" class="form-control">
+					</div>
+				</div>
 			</div>
-
 			<div class="ln_solid"></div>
 			<div class="form-group row">
 				<div class="col-md-9 col-sm-9  offset-md-3">
