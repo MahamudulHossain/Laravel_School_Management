@@ -14,6 +14,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\student\StudentRegController;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,4 +112,11 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/users_edit/{id}',[UsersController::class,'edit']);
 	Route::post('/update_users',[UsersController::class,'update']);
 	Route::get('/users_delete/{id}',[UsersController::class,'delete']);
+	//Student Register
+	Route::get('/students_list',[StudentRegController::class,'list']);
+	Route::get('/student_reg_form',[StudentRegController::class,'show_form']);
+	Route::post('/register_student',[UsersController::class,'add_form']);
+	Route::get('/student_edit/{id}',[UsersController::class,'edit']);
+	Route::post('/update_student',[UsersController::class,'update']);
+	Route::get('/student_delete/{id}',[UsersController::class,'delete']);
 });

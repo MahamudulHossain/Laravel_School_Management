@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('mname')->nullable();
             $table->string('religion')->nullable();
             $table->string('id_no')->nullable();
+            $table->string('image')->nullable();
             $table->date('dob')->nullable();
             $table->string('code')->nullable();
             $table->date('join_date')->nullable();
