@@ -9,6 +9,8 @@ use App\Models\Group;
 use App\Models\Year;
 use App\Models\Shift;
 use App\Models\ClassName;
+use App\Models\AssignStudent;
+use App\Models\DiscountStudent;
 use DB;
 class StudentRegController extends Controller
 {
@@ -32,8 +34,42 @@ class StudentRegController extends Controller
     		}else{
     			$id_chk = MultiUser::where('usertype','student')->orderBy('id','desc')->first('id_no');
     			$id_no = $id_chk->id_no + 1;
-    			dd($id_no);
     		}
+    		$multiUser = new MultiUser;
+    		$multiUser->usertype = 'student'; 
+    		$multiUser->name = $req->name; 
+    		$multiUser->password = md5($id_no); 
+    		$multiUser->mobile = $req->mobile; 
+    		$multiUser->address = $req->address; 
+    		$multiUser->gender = $req->gender; 
+    		$multiUser->fname = $req->fname;  
+    		$multiUser->mname = $req->mname;  
+    		$multiUser->religion = $req->religion;  
+    		$multiUser->id_no = $id_no;  
+    		$multiUser->code = rand(111111,999999);  
+    		$multiUser->dob = date('Y-m-d',strtotime($req->dob));  
+    		if($req->hasfile('image')){
+    		$file = $req->file('image');
+    		$ext = $file->getClientOriginalExtension();
+    		$filename = time(). '.' .$ext;
+    		$file->move('uploads/images',$filename);
+    		$multiUser->image= $filename;
+    		}
+    		$multiUser->save();
+    		$aStu = new AssignStudent;
+    		$aStu->student_id = $multiUser->id;
+    		$aStu->class_id = $req->class_id;
+    		$aStu->year_id = $req->year_id;
+    		$aStu->group_id = $req->group_id;
+    		$aStu->shift_id = $req->shift_id;
+    		$aStu->save();
+    		$disStu = new DiscountStudent;
+    		$disStu->assign_student_id = $aStu->id;
+    		$disStu->fee_category_id = '1';
+    		$disStu->discount = $req->discount;
+    		$disStu->save();
     	});
+     	$req->session()->flash('message','Registration Successfull');
+        return redirect('/students_list');
     }
 }

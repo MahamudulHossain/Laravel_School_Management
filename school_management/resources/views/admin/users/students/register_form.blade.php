@@ -8,12 +8,6 @@
 		<br />
 		<form class="form-label-left input_mask" method="post" action="{{url('register_student')}}" enctype="multipart/form-data">
 			@csrf
-			<input type="text" name="name" value="NINTA">
-			<input type="text" name="password" value="LOVE">
-			<input type="text" name="usertype" value="RIfat">
-			<input type="text" name="year_id" value="2">
-			<button type="submit" class="btn btn-success">Submit</button>
-		</form>	
 			<div class="form-group row">
 				<div class="col-md-4">
 						<label class="col-form-label col-md-3 col-sm-3 ">Name</label>
@@ -52,7 +46,7 @@
 				<div class="col-md-4">
 					<label class="col-form-label col-md-3 col-sm-3 ">Religion</label>
 					<div class="col-md-9 col-sm-9">
-					<select class="form-control" name="gender" required="required">
+					<select class="form-control" name="religion" required="required">
 						<option value="">Select Religion</option>
 						<option value="muslim">Muslim</option>
 						<option value="hindu">Hindu</option>
@@ -75,7 +69,7 @@
 				<div class="col-md-4">
 					<label class="col-form-label col-md-3 col-sm-3 ">Group Name</label>
 					<div class="col-md-9 col-sm-9">
-					<select class="form-control" name="group_id" required="required">
+					<select class="form-control" name="group_id">
 						<option value="">Select Group</option>
 						@foreach($group as $grp)
 						<option value="{{$grp->id}}">{{$grp->name}}</option>
@@ -86,7 +80,7 @@
 				<div class="col-md-4">
 					<label class="col-form-label col-md-3 col-sm-3 ">Shift</label>
 					<div class="col-md-9 col-sm-9">
-					<select class="form-control" name="group_id" required="required">
+					<select class="form-control" name="shift_id" required="required">
 						<option value="">Select Shift</option>
 						@foreach($shift as $sft)
 						<option value="{{$sft->id}}">{{$sft->name}}</option>
@@ -100,7 +94,7 @@
 					<select class="form-control" name="year_id" required="required">
 						<option value="">Select Year</option>
 						@foreach($year as $yr)
-						<option value="{{$yr->id}}">{{$yr->name}}</option>
+						<option value="{{$yr->id}}">{{$yr->year}}</option>
 						@endforeach
 					</select>
 					</div>
