@@ -118,5 +118,6 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/register_student',[StudentRegController::class,'add_form']);
 	Route::get('/student_edit/{id}/{yearId}',[StudentRegController::class,'edit']);
 	Route::post('/update_student',[StudentRegController::class,'update']);
-	Route::get('/student_delete/{id}',[StudentRegController::class,'delete']);
+	Route::get('/student_promotion/{id}/{yearId}',[StudentRegController::class,'promotion_form']);
+	Route::post('/promote_student',[StudentRegController::class,'promote']);
 });

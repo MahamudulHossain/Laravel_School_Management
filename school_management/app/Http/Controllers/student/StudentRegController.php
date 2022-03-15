@@ -117,4 +117,35 @@ class StudentRegController extends Controller
         $req->session()->flash('message','Student Info Updated Successfull');
         return redirect('/students_list');
     }
+    public function promotion_form($id,$yearID){
+        $result['editData'] = DB::table('multi_users')
+                            ->join('assign_students','assign_students.student_id','=','multi_users.id')  
+                            ->join('discount_students','discount_students.assign_student_id','=','assign_students.id')
+                            ->where(['multi_users.id'=>$id,'assign_students.year_id'=>$yearID])
+                            ->select('multi_users.*','assign_students.*','discount_students.discount','discount_students.assign_student_id')
+                            ->get();             
+        $result['className'] = ClassName::all();
+        $result['group'] = Group::all();
+        $result['year'] = Year::all();
+        $result['shift'] = Shift::all();
+        return view('admin.users.students.student_promotion',$result);
+    }
+    public function promote(Request $req){
+        DB::transaction(function() use($req){
+            $aStu = new AssignStudent;
+            $aStu->student_id = $req->stu_id;
+            $aStu->class_id = $req->class_id;
+            $aStu->year_id = $req->year_id;
+            $aStu->group_id = $req->group_id;
+            $aStu->shift_id = $req->shift_id;
+            $aStu->save();
+            $disStu = new DiscountStudent;
+            $disStu->assign_student_id = $aStu->id;
+            $disStu->fee_category_id = '1';
+            $disStu->discount = $req->discount;
+            $disStu->save();
+        });
+        $req->session()->flash('message','Student Promoted Successfully');
+        return redirect('/students_list');
+    }
 }

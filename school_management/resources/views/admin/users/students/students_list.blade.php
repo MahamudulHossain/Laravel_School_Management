@@ -72,7 +72,7 @@
 	      <td>{{$cl->code}}</td>
 	      <td>
 	      	<a href="{{url('student_edit')}}/{{$cl->id}}/{{$cl->get_student->year_id}}"><button class="btn btn-sm btn-primary">Edit</button></a>
-          <a onclick="return confirm('Do you sure to delete?')" href="{{url('student_delete')}}/{{$cl->id}}"><button class="btn btn-sm btn-danger">Delete</button></a>
+          <a href="{{url('student_promotion')}}/{{$cl->id}}/{{$cl->get_student->year_id}}"><button class="btn btn-sm btn-success">Promotion</button></a>
 	      </td>
 	    </tr>
 	    @endforeach
