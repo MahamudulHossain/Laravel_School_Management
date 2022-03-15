@@ -45,15 +45,31 @@
 	    <tr>
 	      <th>SL.</th>
         <th>Name</th>
+        <th>Id NO.</th>
+        <th>Roll</th>
+        <th>Class</th>
+        <th>Image</th>
 	      <th>Code</th>
 	      <th>Action</th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	  	@foreach($data as $key=>$cl)
+      
 	    <tr>
 	      <td>{{++$key}}</td>
         <td>{{$cl->name}}</td>
+        <td>{{$cl->id_no}}</td>
+        <td></td>
+        <td>
+          <?php
+            $clNm = App\Models\ClassName::where('id',$cl->get_student->class_id)->get();
+          ?>
+          {{$clNm[0]->name}}
+        </td>
+        <td>
+          <img src="{{asset('uploads/images')}}/{{$cl->image}}" width="120px" height="80px">
+        </td>
 	      <td>{{$cl->code}}</td>
 	      <td>
 	      	<a href="{{url('student_edit')}}/{{$cl->id}}"><button class="btn btn-sm btn-primary">Edit</button></a>

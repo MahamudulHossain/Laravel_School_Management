@@ -15,7 +15,7 @@ use DB;
 class StudentRegController extends Controller
 {
     public function list(){
-    	$data = MultiUser::where('usertype','student')->get();
+    	$data = MultiUser::with('get_student')->where('usertype','student')->get();
     	return view('admin.users.students.students_list',compact('data'));
     }
     public function show_form(){
