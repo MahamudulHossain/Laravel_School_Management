@@ -55,7 +55,6 @@
 	  </thead>
 	  <tbody>
 	  	@foreach($data as $key=>$cl)
-      
 	    <tr>
 	      <td>{{++$key}}</td>
         <td>{{$cl->name}}</td>

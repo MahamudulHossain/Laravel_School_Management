@@ -72,4 +72,49 @@ class StudentRegController extends Controller
      	$req->session()->flash('message','Registration Successfull');
         return redirect('/students_list');
     }
+    public function edit($id){
+        $result['editData'] = DB::table('multi_users')
+                            ->join('assign_students','assign_students.student_id','=','multi_users.id')  
+                            ->join('discount_students','discount_students.assign_student_id','=','assign_students.id')
+                            ->where('multi_users.id',$id)
+                            ->select('multi_users.*','assign_students.*','discount_students.discount','discount_students.assign_student_id')
+                            ->get();             
+        $result['className'] = ClassName::all();
+        $result['group'] = Group::all();
+        $result['year'] = Year::all();
+        $result['shift'] = Shift::all();
+        return view('admin.users.students.student_edit',$result);
+    }
+    public function update(Request $req){
+        DB::transaction(function() use($req){
+            $multiUser = MultiUser::find($req->stu_id);
+            $multiUser->name = $req->name;
+            $multiUser->mobile = $req->mobile; 
+            $multiUser->address = $req->address; 
+            $multiUser->gender = $req->gender; 
+            $multiUser->fname = $req->fname;  
+            $multiUser->mname = $req->mname;  
+            $multiUser->religion = $req->religion; 
+            $multiUser->dob = date('Y-m-d',strtotime($req->dob));  
+            if($req->hasfile('image')){
+            $file = $req->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time(). '.' .$ext;
+            $file->move('uploads/images',$filename);
+            $multiUser->image= $filename;
+            }
+            $multiUser->save();
+            $aStu =AssignStudent::where('student_id',$req->stu_id)->first();
+            $aStu->class_id = $req->class_id;
+            $aStu->year_id = $req->year_id;
+            $aStu->group_id = $req->group_id;
+            $aStu->shift_id = $req->shift_id;
+            $aStu->save();
+            $disStu = DiscountStudent::where('assign_student_id',$req->assign_stu_id)->first();
+            $disStu->discount = $req->discount;
+            $disStu->save();
+        });
+        $req->session()->flash('message','Student Info Updated Successfull');
+        return redirect('/students_list');
+    }
 }
