@@ -9,6 +9,7 @@
 		<form class="form-label-left input_mask" method="post" action="{{url('update_student')}}" enctype="multipart/form-data">
 			@csrf
 			<input type="hidden" name="stu_id" value="{{$editData[0]->id}}">
+			<input type="hidden" name="yr_id" value="{{$editData[0]->year_id}}">
 			<input type="hidden" name="assign_stu_id" value="{{$editData[0]->assign_student_id}}">
 			<div class="form-group row">
 				<div class="col-md-4">

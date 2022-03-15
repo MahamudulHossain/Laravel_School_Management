@@ -116,7 +116,7 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/students_list',[StudentRegController::class,'list']);
 	Route::get('/student_reg_form',[StudentRegController::class,'show_form']);
 	Route::post('/register_student',[StudentRegController::class,'add_form']);
-	Route::get('/student_edit/{id}',[StudentRegController::class,'edit']);
+	Route::get('/student_edit/{id}/{yearId}',[StudentRegController::class,'edit']);
 	Route::post('/update_student',[StudentRegController::class,'update']);
 	Route::get('/student_delete/{id}',[StudentRegController::class,'delete']);
 });

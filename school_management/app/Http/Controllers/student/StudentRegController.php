@@ -72,11 +72,11 @@ class StudentRegController extends Controller
      	$req->session()->flash('message','Registration Successfull');
         return redirect('/students_list');
     }
-    public function edit($id){
+    public function edit($id,$yearID){
         $result['editData'] = DB::table('multi_users')
                             ->join('assign_students','assign_students.student_id','=','multi_users.id')  
                             ->join('discount_students','discount_students.assign_student_id','=','assign_students.id')
-                            ->where('multi_users.id',$id)
+                            ->where(['multi_users.id'=>$id,'assign_students.year_id'=>$yearID])
                             ->select('multi_users.*','assign_students.*','discount_students.discount','discount_students.assign_student_id')
                             ->get();             
         $result['className'] = ClassName::all();
@@ -104,7 +104,7 @@ class StudentRegController extends Controller
             $multiUser->image= $filename;
             }
             $multiUser->save();
-            $aStu =AssignStudent::where('student_id',$req->stu_id)->first();
+            $aStu =AssignStudent::where(['student_id'=>$req->stu_id,'year_id'=>$req->yr_id])->first();
             $aStu->class_id = $req->class_id;
             $aStu->year_id = $req->year_id;
             $aStu->group_id = $req->group_id;
