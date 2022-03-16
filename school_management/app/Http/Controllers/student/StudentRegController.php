@@ -150,8 +150,17 @@ class StudentRegController extends Controller
         return redirect('/students_list');
     }
     public function generatePDF($id,$yearID){
-        $data = array();
-        $pdf = PDF::loadView('admin.users.students.student_detail_pdf', $data);
+        $result['editData'] = DB::table('multi_users')
+                            ->join('assign_students','assign_students.student_id','=','multi_users.id')  
+                            ->join('discount_students','discount_students.assign_student_id','=','assign_students.id')
+                            ->where(['multi_users.id'=>$id,'assign_students.year_id'=>$yearID])
+                            ->select('multi_users.*','assign_students.*','discount_students.discount','discount_students.assign_student_id')
+                            ->get();
+        $result['className'] = ClassName::all();
+        $result['group'] = Group::all();
+        $result['year'] = Year::all();
+        $result['shift'] = Shift::all();                    
+        $pdf = PDF::loadView('admin.users.students.student_detail_pdf', $result);
         return $pdf->stream('invoice.pdf');
     }
 }
