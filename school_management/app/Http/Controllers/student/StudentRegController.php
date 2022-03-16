@@ -12,6 +12,7 @@ use App\Models\ClassName;
 use App\Models\AssignStudent;
 use App\Models\DiscountStudent;
 use DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 class StudentRegController extends Controller
 {
     public function list(){
@@ -147,5 +148,10 @@ class StudentRegController extends Controller
         });
         $req->session()->flash('message','Student Promoted Successfully');
         return redirect('/students_list');
+    }
+    public function generatePDF($id,$yearID){
+        $data = array();
+        $pdf = PDF::loadView('admin.users.students.student_detail_pdf', $data);
+        return $pdf->stream('invoice.pdf');
     }
 }

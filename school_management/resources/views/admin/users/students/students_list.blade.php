@@ -73,6 +73,7 @@
 	      <td>
 	      	<a href="{{url('student_edit')}}/{{$cl->id}}/{{$cl->get_student->year_id}}"><button class="btn btn-sm btn-primary">Edit</button></a>
           <a href="{{url('student_promotion')}}/{{$cl->id}}/{{$cl->get_student->year_id}}"><button class="btn btn-sm btn-success">Promotion</button></a>
+          <a href="{{url('student_pdf')}}/{{$cl->id}}/{{$cl->get_student->year_id}}"><button class="btn btn-sm btn-success">PDF</button></a>
 	      </td>
 	    </tr>
 	    @endforeach
