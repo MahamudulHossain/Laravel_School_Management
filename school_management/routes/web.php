@@ -15,6 +15,7 @@ use App\Http\Controllers\AssignSubjectController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\student\StudentRegController;
+use App\Http\Controllers\student\StuMngController;
 
 /*
 |--------------------------------------------------------------------------
@@ -121,4 +122,6 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/student_promotion/{id}/{yearId}',[StudentRegController::class,'promotion_form']);
 	Route::post('/promote_student',[StudentRegController::class,'promote']);
 	Route::get('/student_pdf/{id}/{yearId}',[StudentRegController::class,'generatePDF']);
+	//Student Management
+	Route::get('/roll_generation_form',[StuMngController::class,'assign_roll_form']);
 });

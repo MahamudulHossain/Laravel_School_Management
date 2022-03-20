@@ -74,6 +74,11 @@
                       <li><a href="{{url('designation_list')}}">Designation</span></a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-child"></i> Manage Students <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{url('roll_generation_form')}}">Roll generation</span></a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
 
