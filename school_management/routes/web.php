@@ -124,4 +124,5 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/student_pdf/{id}/{yearId}',[StudentRegController::class,'generatePDF']);
 	//Student Management
 	Route::get('/roll_generation_form',[StuMngController::class,'assign_roll_form']);
+	Route::get('get_stu_info',[StuMngController::class,'stu_info']);
 });

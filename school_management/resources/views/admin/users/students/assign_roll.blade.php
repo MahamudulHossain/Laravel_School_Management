@@ -78,7 +78,7 @@
             <th>Roll</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="tbl_body">
         
         </tbody>  
         </table>
@@ -106,7 +106,19 @@
           $("#clEmty").html("Please select class");
           return false;
         }
-        $("#table").removeClass("d-none");
+        $.ajax({
+          url: "{{url('/get_stu_info')}}",
+          type: "GET",
+          data:{'cls_id':cls,'year_id':yr},
+          success:function(result){
+            $("#table").removeClass("d-none");
+            var html = "";
+            $.each(result.data,function(key,val){
+              html +="<tr><td>"+val.stu_id+"</td><td>"+val.stu_nm+"</td><td>"+val.stu_fname+"</td><td>"+val.roll+"</td></tr>";
+            });
+            $("#tbl_body").append(html);
+          }
+        });
       });
     </script>
     <!-- Datatables -->
