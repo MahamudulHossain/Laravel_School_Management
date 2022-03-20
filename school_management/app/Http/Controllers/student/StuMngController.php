@@ -27,7 +27,7 @@ class StuMngController extends Controller
         if($req->year_id > 0 ){
             if($req->student_id){
                 for($i=0; $i< count($req->student_id); $i++){
-                $data = AssignStudent::where(['student_id'=>$req->student_id[$i]])->first();
+                $data = AssignStudent::where(['student_id'=>$req->student_id[$i],'year_id'=>$req->year_id])->first();
                 $data->roll = $req->roll[$i];
                 $data->save();
                 }
