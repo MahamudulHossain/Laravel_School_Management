@@ -23,4 +23,23 @@ class StuMngController extends Controller
                    ->get();
     	return response()->json(['data'=>$allData]); 
     }
+    public function assign_roll(Request $req){
+        if($req->year_id > 0 ){
+            if($req->student_id){
+                for($i=0; $i< count($req->student_id); $i++){
+                $data = AssignStudent::where(['student_id'=>$req->student_id[$i]])->first();
+                $data->roll = $req->roll[$i];
+                $data->save();
+                }
+                $req->session()->flash('message','Roll assigned successfully');
+                return redirect('/roll_generation_form');
+            }else{
+                $req->session()->flash('message','Make sure you searched');
+                return redirect('/roll_generation_form');
+            }
+        }else{
+            $req->session()->flash('message','Select Year and Class');
+            return redirect('/roll_generation_form');
+        }
+    }
 }

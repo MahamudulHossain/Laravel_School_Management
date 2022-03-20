@@ -125,4 +125,6 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	//Student Management
 	Route::get('/roll_generation_form',[StuMngController::class,'assign_roll_form']);
 	Route::get('get_stu_info',[StuMngController::class,'stu_info']);
+	Route::post('assign_roll',[StuMngController::class,'assign_roll']);
+
 });

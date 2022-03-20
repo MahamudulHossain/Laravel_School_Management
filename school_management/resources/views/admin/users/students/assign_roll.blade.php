@@ -37,7 +37,7 @@
 </div>
 <div class="x_content">
     <br />
-    <form class="form-label-left input_mask" method="post" action="{{url('register_student')}}" enctype="multipart/form-data">
+    <form class="form-label-left input_mask" method="post" action="{{url('assign_roll')}}">
       @csrf
       <div class="form-group row">
         <div class="col-md-4">
@@ -94,6 +94,7 @@
 
     <script type="text/javascript">
       $(document).on('click','#search',function(){
+        $("#tbl_body").html("");
         $("#yrEmty").html("");
         $("#clEmty").html("");
         var yr = $("#year_id").val();
@@ -114,7 +115,7 @@
             $("#table").removeClass("d-none");
             var html = "";
             $.each(result.data,function(key,val){
-              html +="<tr><td>"+val.stu_id+"</td><td>"+val.stu_nm+"</td><td>"+val.stu_fname+"</td><td>"+val.roll+"</td></tr>";
+              html +="<tr><input type='hidden' name='student_id[]' value='"+val.student_id+"'><td>"+val.stu_id+"</td><td>"+val.stu_nm+"</td><td>"+val.stu_fname+"</td><td><input type='number' name='roll[]' value='"+val.roll+"'></td></tr>";
             });
             $("#tbl_body").append(html);
           }
