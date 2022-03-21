@@ -16,6 +16,7 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\student\StudentRegController;
 use App\Http\Controllers\student\StuMngController;
+use App\Http\Controllers\student\StuRegFeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,5 +127,8 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/roll_generation_form',[StuMngController::class,'assign_roll_form']);
 	Route::get('get_stu_info',[StuMngController::class,'stu_info']);
 	Route::post('assign_roll',[StuMngController::class,'assign_roll']);
+	Route::get('stu_regFee_form',[StuRegFeeController::class,'show']);
+	Route::get('get_stu_Reg_info',[StuRegFeeController::class,'fetch']);
+
 
 });

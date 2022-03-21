@@ -77,6 +77,7 @@
                   <li><a><i class="fa fa-child"></i> Manage Students <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{url('roll_generation_form')}}">Roll generation</span></a></li>
+                      <li><a href="{{url('stu_regFee_form')}}">Registration fee</span></a></li>
                     </ul>
                   </li>
                 </ul>
