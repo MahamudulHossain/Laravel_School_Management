@@ -129,6 +129,5 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('assign_roll',[StuMngController::class,'assign_roll']);
 	Route::get('stu_regFee_form',[StuRegFeeController::class,'show']);
 	Route::get('get_stu_Reg_info',[StuRegFeeController::class,'fetch']);
-
-
+	Route::get('/download-paySlip/{cls}/{yr}/{rl}',[StuRegFeeController::class,'pdf']);
 });

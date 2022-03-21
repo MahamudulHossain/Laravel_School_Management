@@ -112,7 +112,7 @@
             $("#table").removeClass("d-none");
             var html = "";
             $.each(result.data,function(key,val){
-              html +="<tr><td>"+(++key)+"</td><td>"+val.stu_id+"</td><td>"+val.stu_nm+"</td><td>"+val.roll+"</td><td>"+val.amount+"</td><td>"+val.discount+"</td><td>"+(val.amount-(val.amount/100)*val.discount)+"</td><td><button class='btn btn-sm btn-success'>Pay slip</button></td></tr>";
+              html +="<tr><td>"+(++key)+"</td><td>"+val.stu_id+"</td><td>"+val.stu_nm+"</td><td>"+val.roll+"</td><td>"+val.amount+"</td><td>"+val.discount+"</td><td>"+(val.amount-(val.amount/100)*val.discount)+"</td><td><a href='{{url('download-paySlip')}}/"+cls+"/"+yr+"/"+val.roll+"'><button class='btn btn-sm btn-success'>Pay slip</button></a></td></tr>";
             });
             $("#tbl_body").append(html);
           }
