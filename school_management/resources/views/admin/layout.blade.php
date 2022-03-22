@@ -79,6 +79,7 @@
                       <li><a href="{{url('roll_generation_form')}}">Roll generation</span></a></li>
                       <li><a href="{{url('stu_regFee_form')}}">Registration fee</span></a></li>
                       <li><a href="{{url('stu_monthlyFee_form')}}">Monthly fee</span></a></li>
+                      <li><a href="{{url('stu_examFee_form')}}">Exam fee</span></a></li>
                     </ul>
                   </li>
                 </ul>
