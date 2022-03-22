@@ -17,6 +17,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\student\StudentRegController;
 use App\Http\Controllers\student\StuMngController;
 use App\Http\Controllers\student\StuRegFeeController;
+use App\Http\Controllers\student\StuMonthFeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,4 +131,7 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('stu_regFee_form',[StuRegFeeController::class,'show']);
 	Route::get('get_stu_Reg_info',[StuRegFeeController::class,'fetch']);
 	Route::get('/download-paySlip/{cls}/{yr}/{rl}',[StuRegFeeController::class,'pdf']);
+	Route::get('stu_monthlyFee_form',[StuMonthFeeController::class,'show']);
+	Route::get('get_stu_Month_info',[StuMonthFeeController::class,'fetch']);
+	Route::get('/download-monthSlip/{cls}/{yr}/{mn}/{rl}',[StuMonthFeeController::class,'pdf']);
 });
