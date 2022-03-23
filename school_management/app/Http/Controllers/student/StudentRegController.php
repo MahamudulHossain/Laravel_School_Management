@@ -36,10 +36,11 @@ class StudentRegController extends Controller
     			$id_chk = MultiUser::where('usertype','student')->orderBy('id','desc')->first('id_no');
     			$id_no = $id_chk->id_no + 1;
     		}
+            $code = rand(111111,999999);
     		$multiUser = new MultiUser;
     		$multiUser->usertype = 'student'; 
     		$multiUser->name = $req->name; 
-    		$multiUser->password = md5($id_no); 
+    		$multiUser->password = md5($code); 
     		$multiUser->mobile = $req->mobile; 
     		$multiUser->address = $req->address; 
     		$multiUser->gender = $req->gender; 
@@ -47,7 +48,7 @@ class StudentRegController extends Controller
     		$multiUser->mname = $req->mname;  
     		$multiUser->religion = $req->religion;  
     		$multiUser->id_no = $id_no;  
-    		$multiUser->code = rand(111111,999999);  
+    		$multiUser->code = $code;  
     		$multiUser->dob = date('Y-m-d',strtotime($req->dob));  
     		if($req->hasfile('image')){
     		$file = $req->file('image');
