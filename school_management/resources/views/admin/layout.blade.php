@@ -58,6 +58,7 @@
                     <ul class="nav child_menu">
                       <li><a href="{{url('users_list')}}">Users</span></a></li>
                       <li><a href="{{url('students_list')}}">Students</span></a></li>
+                      <li><a href="{{url('employees_list')}}">Emloyees</span></a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Setup Management <span class="fa fa-chevron-down"></span></a>

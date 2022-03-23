@@ -19,6 +19,7 @@ use App\Http\Controllers\student\StuMngController;
 use App\Http\Controllers\student\StuRegFeeController;
 use App\Http\Controllers\student\StuMonthFeeController;
 use App\Http\Controllers\student\StuExamFeeController;
+use App\Http\Controllers\employee\EmployeeRegController;
 
 /*
 |--------------------------------------------------------------------------
@@ -138,4 +139,8 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('stu_examFee_form',[StuExamFeeController::class,'show']);
 	Route::get('get_stu_Exam_info',[StuExamFeeController::class,'fetch']);
 	Route::get('/download-examSlip/{cls}/{yr}/{ex}/{rl}',[StuExamFeeController::class,'pdf']);
+	//Employee Register
+	Route::get('/employees_list',[EmployeeRegController::class,'list']);
+	Route::get('/employee_reg_form',[EmployeeRegController::class,'show_form']);
+	Route::post('/register_employee',[EmployeeRegController::class,'add_form']);
 });
