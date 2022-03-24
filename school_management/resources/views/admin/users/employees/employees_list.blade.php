@@ -68,7 +68,7 @@
         <td>{{$cl->salary}}</td>
 	      <td>{{$cl->code}}</td>
 	      <td>
-	      	<a href=""><button class="btn btn-sm btn-primary">Edit</button></a>
+	      	<a href="{{url('employee_edit',$cl->id)}}"><button class="btn btn-sm btn-primary">Edit</button></a>
           <a href=""><button class="btn btn-sm btn-success">PDF</button></a>
 	      </td>
 	    </tr>

@@ -22,7 +22,7 @@ class EmployeeRegController extends Controller
     public function add_form(Request $req){
     	DB::transaction(function() use($req){
     		$empChk = MultiUser::where('usertype','employee')->first('id');
-    		$yr = date('Y',strtotime($req->join_date));
+    		$yr = date('Ym',strtotime($req->join_date));
     		if($empChk == null){
     			$id_no = $yr.'1';
     		}else{
@@ -63,6 +63,33 @@ class EmployeeRegController extends Controller
     		$empSaLog->save();
     	});
      	$req->session()->flash('message','Registration Successfull');
+        return redirect('/employees_list');
+    }
+    public function edit($id){
+        $result['editData'] = MultiUser::find($id);
+        $result['designation'] = Designation::all();
+        return view('admin.users.employees.employee_edit',$result);
+    }
+    public function update(Request $req,$id){
+            $multiUser = MultiUser::find($id);
+            $multiUser->name = $req->name; 
+            $multiUser->mobile = $req->mobile; 
+            $multiUser->address = $req->address; 
+            $multiUser->gender = $req->gender; 
+            $multiUser->fname = $req->fname;  
+            $multiUser->mname = $req->mname;  
+            $multiUser->religion = $req->religion;  
+            $multiUser->designation_id = $req->designation_id;  
+            $multiUser->dob = date('Y-m-d',strtotime($req->dob));  
+            if($req->hasfile('image')){
+            $file = $req->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time(). '.' .$ext;
+            $file->move('uploads/images',$filename);
+            $multiUser->image= $filename;
+            }
+            $multiUser->save();
+        $req->session()->flash('message','Employee Info Updated Successfull');
         return redirect('/employees_list');
     }
 }

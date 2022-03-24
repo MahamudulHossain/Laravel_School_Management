@@ -143,4 +143,7 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/employees_list',[EmployeeRegController::class,'list']);
 	Route::get('/employee_reg_form',[EmployeeRegController::class,'show_form']);
 	Route::post('/register_employee',[EmployeeRegController::class,'add_form']);
+	Route::get('/employee_edit/{id}',[EmployeeRegController::class,'edit']);
+	Route::post('/update_employee/{id}',[EmployeeRegController::class,'update']);
+
 });
