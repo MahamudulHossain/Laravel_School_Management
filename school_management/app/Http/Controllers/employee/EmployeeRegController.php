@@ -92,4 +92,10 @@ class EmployeeRegController extends Controller
         $req->session()->flash('message','Employee Info Updated Successfull');
         return redirect('/employees_list');
     }
+    public function generatePDF($id){
+        $result['editData'] = MultiUser::find($id);   
+        $result['designation'] = Designation::all();      
+        $pdf = PDF::loadView('admin.users.employees.employee_detail_pdf', $result);
+        return $pdf->stream('detail.pdf');
+    }
 }
