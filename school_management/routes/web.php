@@ -20,6 +20,7 @@ use App\Http\Controllers\student\StuRegFeeController;
 use App\Http\Controllers\student\StuMonthFeeController;
 use App\Http\Controllers\student\StuExamFeeController;
 use App\Http\Controllers\employee\EmployeeRegController;
+use App\Http\Controllers\employee\EmployeeSalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -146,5 +147,9 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/employee_edit/{id}',[EmployeeRegController::class,'edit']);
 	Route::post('/update_employee/{id}',[EmployeeRegController::class,'update']);
 	Route::get('/employee_pdf/{id}',[EmployeeRegController::class,'generatePDF']);
-
+	//Employee Management
+	Route::get('/employee_salary_management',[EmployeeSalController::class,'view']);
+	Route::get('/employee_salary_increment/{id}',[EmployeeSalController::class,'show_form']);
+	Route::post('/employee_increment_salary/{id}',[EmployeeSalController::class,'store']);
 });
+

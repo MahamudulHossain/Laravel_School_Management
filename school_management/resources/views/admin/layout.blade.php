@@ -83,6 +83,11 @@
                       <li><a href="{{url('stu_examFee_form')}}">Exam fee</span></a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-child"></i> Manage Employees <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{url('employee_salary_management')}}">Salary Management</span></a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
 
