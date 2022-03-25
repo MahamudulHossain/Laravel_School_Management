@@ -151,5 +151,6 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/employee_salary_management',[EmployeeSalController::class,'view']);
 	Route::get('/employee_salary_increment/{id}',[EmployeeSalController::class,'show_form']);
 	Route::post('/employee_increment_salary/{id}',[EmployeeSalController::class,'store']);
+	Route::get('/employee_salary_details/{id}',[EmployeeSalController::class,'details']);
 });
 

@@ -34,4 +34,9 @@ class EmployeeSalController extends Controller
     	$req->session()->flash('message','Salary Incremented Successfully');
         return redirect('/employee_salary_management');
     }
+    public function details($id){
+    	$data['allData'] =  MultiUser::find($id);
+    	$data['salaryData'] =  EmployeeSalaryLog::where('employee_id',$id)->get();
+    	return view('admin.users.employees.salary.employee_salary_details',$data);
+    }
 }
