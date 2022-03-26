@@ -47,7 +47,8 @@
         <th>Name</th>
         <th>Id NO.</th>
         <th>Purpose</th>
-        <th>Date</th>
+        <th>Start Date</th>
+        <th>End Date</th>
 	      <th>Action</th>
 	    </tr>
 	  </thead>
@@ -55,12 +56,28 @@
 	  	@foreach($allData as $key=>$cl)
 	    <tr>
 	      <td>{{++$key}}</td>
-        <td>{{$cl->employee_id}}</td>
-        <td>{{$cl->id_no}}</td>
-        <td>{{$cl->purpose_id}}</td>
+        <td>
+          <?php
+            $empName = App\Models\MultiUser::where('id',$cl->employee_id)->get();
+            echo $empName['0']->name;
+          ?>
+        </td>
+        <td>
+          <?php
+            $empName = App\Models\MultiUser::where('id',$cl->employee_id)->get();
+            echo $empName['0']->id_no;
+          ?>
+        </td>
+        <td>
+          <?php
+            $empName = App\Models\LeavePurpose::where('id',$cl->leave_purpose_id)->get();
+            echo $empName['0']->name;
+          ?>
+        </td>
         <td>{{date('d-m-Y',strtotime($cl->start_date))}}</td>
+        <td>{{date('d-m-Y',strtotime($cl->end_date))}}</td>
 	      <td>
-	      	<a href="{{url('employee_edit',$cl->id)}}"><button class="btn btn-sm btn-primary">Edit</button></a>
+	      	<a href="{{url('employee_leave_edit',$cl->id)}}"><button class="btn btn-sm btn-primary">Edit</button></a>
 	      </td>
 	    </tr>
 	    @endforeach
