@@ -21,4 +21,12 @@ class EmployeeLeaveController extends Controller
     	$data['leave_purpose'] = LeavePurpose::get();
     	return view('admin.users.employees.leave.employees_leave_form',$data);
     }
+    public function store(Request $req){
+    	if($req->leave_purpose_id == '0' && $req->new_purpose == null){
+    		$req->session()->flash('message','Please insert your leave purpose');
+        	return redirect()->back();
+    	}else{
+    		dd("NINTA");
+    	}
+    }
 }

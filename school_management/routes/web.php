@@ -155,5 +155,8 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/employee_salary_details/{id}',[EmployeeSalController::class,'details']);
 	Route::get('/employee_leave_management',[EmployeeLeaveController::class,'view']);
 	Route::get('/create_employee_leave',[EmployeeLeaveController::class,'create_form']);
+	Route::post('/add_employee_leave',[EmployeeLeaveController::class,'store']);
+
+	
 });
 

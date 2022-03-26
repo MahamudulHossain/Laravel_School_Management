@@ -5,6 +5,11 @@
 @section('content')
 <h2> Employee Leave Form </h2>
 <div class="x_content">
+	@if(session()->has('message'))
+	<div class="alert alert-danger alert-dismissible " role="alert">
+	    {{session('message')}}
+	</div>
+	@endif
 		<br />
 		<form class="form-label-left input_mask" method="post" action="{{url('add_employee_leave')}}">
 			@csrf
@@ -12,7 +17,7 @@
 				<div class="col-md-6">
 						<label class="col-form-label col-md-3 col-sm-3 ">Employee Name</label>
 						<div class="col-md-9 col-sm-9">
-						<select class="form-control" name="emploee_id" required="required">
+						<select class="form-control" name="employee_id" required="required">
 							<option value="">Choose Employee Name</option>
 							@foreach($emp_name as $key=>$val)
 							<option value="{{$val->id}}">{{$val->name}}</option>
@@ -23,12 +28,14 @@
 				<div class="col-md-6">
 					<label class="col-form-label col-md-3 col-sm-3 ">Leave Purpose</label>
 					<div class="col-md-9 col-sm-9">
-					<select class="form-control" name="leave_purpose_id" required="required">
-							<option value="">Choose Employee Name</option>
+					<select class="form-control" name="leave_purpose_id" required="required" id="addPurpose">
+							<option value="">Choose Leave Purpose</option>
 							@foreach($leave_purpose as $key=>$val)
 							<option value="{{$val->id}}">{{$val->name}}</option>
 							@endforeach
-						</select>
+							<option value="0">Add Leave Purpose</option>
+					</select>
+					<input type="text" name="new_purpose" class="form-control d-none" placeholder="Enter your purpose" id="newPurpose">
 					</div>
 				</div>
 			</div>
@@ -54,6 +61,19 @@
 		</form>
 
 	</div>  
+
+	@section('scripts')
+		<script type="text/javascript">
+			$(document).on('change','#addPurpose',function(){
+				var val = $(this).val();
+				if(val == '0'){
+					$('#newPurpose').removeClass('d-none');
+				}else{
+					$('#newPurpose').addClass('d-none');
+				}
+			});
+		</script>
+	@endsection
 
 @endsection
 
