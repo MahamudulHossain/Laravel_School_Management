@@ -21,6 +21,7 @@ use App\Http\Controllers\student\StuMonthFeeController;
 use App\Http\Controllers\student\StuExamFeeController;
 use App\Http\Controllers\employee\EmployeeRegController;
 use App\Http\Controllers\employee\EmployeeSalController;
+use App\Http\Controllers\employee\EmployeeLeaveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -152,5 +153,7 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/employee_salary_increment/{id}',[EmployeeSalController::class,'show_form']);
 	Route::post('/employee_increment_salary/{id}',[EmployeeSalController::class,'store']);
 	Route::get('/employee_salary_details/{id}',[EmployeeSalController::class,'details']);
+	Route::get('/employee_leave_management',[EmployeeLeaveController::class,'view']);
+	Route::get('/create_employee_leave',[EmployeeLeaveController::class,'create_form']);
 });
 
