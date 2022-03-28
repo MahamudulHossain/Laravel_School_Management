@@ -87,6 +87,7 @@
                     <ul class="nav child_menu">
                       <li><a href="{{url('employee_salary_management')}}">Salary Management</span></a></li>
                       <li><a href="{{url('employee_leave_management')}}">Leave Management</span></a></li>
+                      <li><a href="{{url('employee_attend_management')}}">Attendance Management</span></a></li>
                     </ul>
                   </li>
                 </ul>

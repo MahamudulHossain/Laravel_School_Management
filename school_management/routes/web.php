@@ -22,6 +22,7 @@ use App\Http\Controllers\student\StuExamFeeController;
 use App\Http\Controllers\employee\EmployeeRegController;
 use App\Http\Controllers\employee\EmployeeSalController;
 use App\Http\Controllers\employee\EmployeeLeaveController;
+use App\Http\Controllers\employee\EmployeeAttendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,5 +159,12 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/add_employee_leave',[EmployeeLeaveController::class,'store']);
 	Route::get('/employee_leave_edit/{id}',[EmployeeLeaveController::class,'edit']);
 	Route::post('/update_employee_leave/{id}',[EmployeeLeaveController::class,'update']);
+	Route::get('/employee_attend_management',[EmployeeAttendController::class,'view']);
+	Route::get('/upload_employee_attend',[EmployeeAttendController::class,'create_form']);
+	Route::post('/add_employee_attendance',[EmployeeAttendController::class,'store']);
+	Route::get('/employee_attend_edit/{id}',[EmployeeAttendController::class,'edit']);
+
+
+
 });
 
