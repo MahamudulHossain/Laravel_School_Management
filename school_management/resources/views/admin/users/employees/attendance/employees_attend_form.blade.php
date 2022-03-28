@@ -39,7 +39,7 @@
 						@foreach($emp_name as $key=>$emp)
 							<tr>
 								<input type="hidden" name="employee_id[]" value="{{$emp->id}}">
-								<td class="text-center">{{++$key}}</td>
+								<td class="text-center">{{$key + 1}}</td>
 								<td class="text-center">{{$emp->name}}</td>
 								<td colspan="3">
 									<input type="radio" name="attend_status{{$key}}" value="present" checked="checked"><label>Present</label>

@@ -55,10 +55,19 @@
 	  	@foreach($allData as $key=>$at)
 	    <tr>
 	      <td>{{++$key}}</td>
-        <td>{{$at->employee_id}}</td>
-        <td>{{$at->employee_id}}</td>
-        <td>{{date('d-m-Y',strtotime($cl->date))}}</td>
-        <td>{{$at->employee_id}}</td>
+        <td>
+          <?php
+            $empName = App\Models\MultiUser::where('id',$at->employee_id)->get();
+            echo $empName['0']->name;
+          ?>
+        </td>
+        <td>
+          <?php
+            echo $empName['0']->id_no;
+          ?>
+        </td>
+        <td>{{date('d-m-Y',strtotime($at->date))}}</td>
+        <td>{{$at->attend_status}}</td>
 	      <td>
 	      	<a href="{{url('employee_attend_edit',$at->id)}}"><button class="btn btn-sm btn-primary">Edit</button></a>
 	      </td>
