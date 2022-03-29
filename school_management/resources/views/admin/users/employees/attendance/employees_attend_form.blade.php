@@ -60,19 +60,6 @@
 
 	</div>  
 
-	@section('scripts')
-		<script type="text/javascript">
-			$(document).on('change','#addPurpose',function(){
-				var val = $(this).val();
-				if(val == '0'){
-					$('#newPurpose').removeClass('d-none');
-				}else{
-					$('#newPurpose').addClass('d-none');
-				}
-			});
-		</script>
-	@endsection
-
 @endsection
 
 

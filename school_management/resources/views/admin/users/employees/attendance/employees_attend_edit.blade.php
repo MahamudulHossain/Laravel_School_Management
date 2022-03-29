@@ -1,9 +1,9 @@
 @extends('admin.layout')
-@section('title','Employee Leave Edit')
+@section('title','Employee Attendance Edit')
 
 
 @section('content')
-<h2> Employee Leave Edit </h2>
+<h2> Employee Attendance Edit </h2>
 <div class="x_content">
 	@if(session()->has('message'))
 	<div class="alert alert-danger alert-dismissible " role="alert">
@@ -11,51 +11,50 @@
 	</div>
 	@endif
 		<br />
-		<form class="form-label-left input_mask" method="post" action="{{url('update_employee_leave',$allData->id)}}">
+		<form class="form-label-left input_mask" method="post" action="{{url('update_employee_attend',$editData['0']->date)}}">
 			@csrf
 			<div class="form-group row">
-				<div class="col-md-6">
-						<label class="col-form-label col-md-3 col-sm-3 ">Employee Name</label>
+				<div class="col-md-8">
+						<label class="col-form-label col-md-3 col-sm-3 ">Present Date </label>
 						<div class="col-md-9 col-sm-9">
-						<select class="form-control" name="employee_id" required="required">
-							<option value="">Choose Employee Name</option>
-							@foreach($emp_name as $key=>$val)
-							<option value="{{$val->id}}" {{($val->id == $allData->employee_id)?'selected':''}}>{{$val->name}}</option>
-							@endforeach
-						</select>
+						<input type="date" class="form-control" name="date" readonly="readonly" value="{{$editData['0']->date}}">
 						</div>
-				</div>
-				<div class="col-md-6">
-					<label class="col-form-label col-md-3 col-sm-3 ">Leave Purpose</label>
-					<div class="col-md-9 col-sm-9">
-					<select class="form-control" name="leave_purpose_id" required="required" id="addPurpose">
-							<option value="">Choose Leave Purpose</option>
-							@foreach($leave_purpose as $key=>$val)
-							<option value="{{$val->id}}" {{($val->id == $allData->leave_purpose_id)?'selected':''}}>{{$val->name}}</option>
-							@endforeach
-							<option value="0">Add Leave Purpose</option>
-					</select>
-					<input type="text" name="new_purpose" class="form-control d-none" placeholder="Enter your purpose" id="newPurpose">
-					</div>
 				</div>
 			</div>
 			<div class="form-group row">	
-				<div class="col-md-6">
-						<label class="col-form-label col-md-3 col-sm-3 ">Start Date</label>
-						<div class="col-md-9 col-sm-9">
-						<input type="date" class="form-control" name="start_date" required="required" value="{{$allData->start_date}}">
-						</div>
-				</div>
-				<div class="col-md-6">
-						<label class="col-form-label col-md-3 col-sm-3 ">End Date</label>
-						<div class="col-md-9 col-sm-9">
-						<input type="date" class="form-control" name="end_date" required="required" value="{{$allData->end_date}}">
-						</div>
-				</div>
+				<table class="table table-bordered table-stripped dt-responsive">
+					<thead>
+						<tr>
+							<th rowspan="2" class="text-center" style="vertical-align: middle;">SL</th>
+							<th rowspan="2" class="text-center" style="vertical-align: middle;">Employee Name</th>
+							<th colspan="3" class="text-center" style="vertical-align: middle;width: 25%;">Attendance Status</th>
+						</tr>
+						<tr>
+							<th class="text-center btn" style="background-color: #114190;color: #fff;">Present</th>
+							<th class="text-center btn" style="background-color: #114190;color: #fff;">Leave</th>
+							<th class="text-center btn" style="background-color: #114190;color: #fff;">Absent</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($editData as $key=>$eData)
+						
+							<tr>
+								<input type="hidden" name="employee_id[]" value="{{$eData->employee_id}}">
+								<td class="text-center">{{$key + 1}}</td>
+								<td class="text-center">{{$eData->employee_id}}</td>
+								<td colspan="3">
+									<input type="radio" name="attend_status{{$key}}" value="present" {{($eData->attend_status=='present')?'checked':''}}><label>Present</label>
+									<input type="radio" name="attend_status{{$key}}" value="leave" {{($eData->attend_status=='leave')?'checked':''}}><label>Leave</label>
+									<input type="radio" name="attend_status{{$key}}" value="absent" {{($eData->attend_status=='absent')?'checked':''}}><label>Absent</label>
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
 			</div>
 			<div class="form-group row">
 				<div class="col-md-6">
-					<button type="submit" class="btn btn-success">Submit</button>
+					<button type="submit" class="btn btn-success">Update</button>
 				</div>
 			</div>
 		</form>

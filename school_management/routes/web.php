@@ -162,9 +162,8 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/employee_attend_management',[EmployeeAttendController::class,'view']);
 	Route::get('/upload_employee_attend',[EmployeeAttendController::class,'create_form']);
 	Route::post('/add_employee_attendance',[EmployeeAttendController::class,'store']);
-	Route::get('/employee_attend_edit/{id}',[EmployeeAttendController::class,'edit']);
-
-
+	Route::get('/employee_attend_edit/{date}',[EmployeeAttendController::class,'edit']);
+	Route::post('/update_employee_attend/{date}',[EmployeeAttendController::class,'update']);
 
 });
 

@@ -44,10 +44,7 @@
 	  <thead>
 	    <tr>
 	      <th>SL.</th>
-        <th>Name</th>
-        <th>Id NO.</th>
         <th>Date</th>
-        <th>Attendance Status</th>
 	      <th>Action</th>
 	    </tr>
 	  </thead>
@@ -55,21 +52,9 @@
 	  	@foreach($allData as $key=>$at)
 	    <tr>
 	      <td>{{++$key}}</td>
-        <td>
-          <?php
-            $empName = App\Models\MultiUser::where('id',$at->employee_id)->get();
-            echo $empName['0']->name;
-          ?>
-        </td>
-        <td>
-          <?php
-            echo $empName['0']->id_no;
-          ?>
-        </td>
         <td>{{date('d-m-Y',strtotime($at->date))}}</td>
-        <td>{{$at->attend_status}}</td>
 	      <td>
-	      	<a href="{{url('employee_attend_edit',$at->id)}}"><button class="btn btn-sm btn-primary">Edit</button></a>
+	      	<a href="{{url('employee_attend_edit',$at->date)}}"><button class="btn  btn-primary">Edit</button></a>
 	      </td>
 	    </tr>
 	    @endforeach
