@@ -23,6 +23,7 @@ use App\Http\Controllers\employee\EmployeeRegController;
 use App\Http\Controllers\employee\EmployeeSalController;
 use App\Http\Controllers\employee\EmployeeLeaveController;
 use App\Http\Controllers\employee\EmployeeAttendController;
+use App\Http\Controllers\employee\EmployeeGenerateSalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -164,6 +165,9 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/add_employee_attendance',[EmployeeAttendController::class,'store']);
 	Route::get('/employee_attend_edit/{date}',[EmployeeAttendController::class,'edit']);
 	Route::post('/update_employee_attend/{date}',[EmployeeAttendController::class,'update']);
+	Route::get('/employee_salary_generation',[EmployeeGenerateSalController::class,'view']);
+	Route::get('get_emp_sal_info',[EmployeeGenerateSalController::class,'get_sal']);
+
 
 });
 
