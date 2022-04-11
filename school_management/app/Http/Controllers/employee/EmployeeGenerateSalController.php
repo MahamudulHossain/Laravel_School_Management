@@ -15,12 +15,12 @@ class EmployeeGenerateSalController extends Controller
     }
     public function get_sal(Request $req){
     	$month = $req->month;
-    	$res['userData'] = MultiUser::where('usertype','employee')->get(['id','salary']);
-    	foreach($res['userData'] as $key=>$val){
+    	$res = MultiUser::where('usertype','employee')->get(['id','salary','name','id_no']);
+    	foreach($res as $key=>$val){
     		$absentCount = EmployeeAttendance::where(['employee_id'=>$val->id,'attend_status'=>'absent'])->count();
     		$dailySal = ceil($val->salary/30); 
-    		$res['finalSal'] = $val->salary - ($dailySal * $absentCount) . '<br>';
+    		$result[] = $val->salary - ($dailySal * $absentCount);
     	}
-    	return response()->json(['data'=>$res]);		   
+    	return response()->json(['data'=>$res,'sal'=>$result]);		   
     }
 }

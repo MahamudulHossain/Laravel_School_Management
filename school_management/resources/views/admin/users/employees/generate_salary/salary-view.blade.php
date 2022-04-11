@@ -55,11 +55,9 @@
           <tr>
             <th>SL</th>
             <th>ID No.</th>
-            <th>Student Name</th>
-            <th>Roll</th>
-            <th>Registration Fee</th>
-            <th>Discount Amount</th>
-            <th>Final Fee</th>
+            <th>Employee Name</th>
+            <th>Present Salary</th>
+            <th>Monthly Salary(This Month)</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -86,7 +84,12 @@
           type: "GET",
           data:{'month':month},
           success:function(result){
-            console.log(result.data);
+            $("#table").removeClass("d-none");
+            var html = "";
+            $.each(result.data,function(key,val){
+              html +="<tr><td>"+(++key)+"</td><td>"+val.id_no+"</td><td>"+val.name+"</td><td>"+val.salary+"/-</td><td>"+result.sal[--key]+"/-</td><td><a href='{{url('download-paySlip')}}'><button class='btn btn-sm btn-success'>Pay slip</button></a></td></tr>";
+            });
+            $("#tbl_body").append(html);
           }
         });
       });
