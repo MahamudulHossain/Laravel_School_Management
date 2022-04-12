@@ -168,6 +168,5 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/employee_salary_generation',[EmployeeGenerateSalController::class,'view']);
 	Route::get('get_emp_sal_info',[EmployeeGenerateSalController::class,'get_sal']);
 
-
 });
 

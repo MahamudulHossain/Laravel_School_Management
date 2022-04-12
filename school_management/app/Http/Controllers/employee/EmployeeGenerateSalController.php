@@ -14,10 +14,12 @@ class EmployeeGenerateSalController extends Controller
     	return view('admin.users.employees.generate_salary.salary-view');
     }
     public function get_sal(Request $req){
-    	$month = $req->month;
+        $format = strtotime($req->month);
+        $month = date('m', $format);
+    	$year = date('Y', $format);
     	$res = MultiUser::where('usertype','employee')->get(['id','salary','name','id_no']);
     	foreach($res as $key=>$val){
-    		$absentCount = EmployeeAttendance::where(['employee_id'=>$val->id,'attend_status'=>'absent'])->count();
+    		$absentCount = EmployeeAttendance::where(['employee_id'=>$val->id,'attend_status'=>'absent'])->whereMonth('date', $month)->whereYear('date', $year)->count();
     		$dailySal = ceil($val->salary/30); 
     		$result[] = $val->salary - ($dailySal * $absentCount);
     	}

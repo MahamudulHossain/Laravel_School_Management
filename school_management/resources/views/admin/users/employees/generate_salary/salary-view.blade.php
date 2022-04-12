@@ -41,7 +41,7 @@
         <div class="col-md-4">
           <label class="col-form-label col-md-3 col-sm-3 ">Month</label>
           <div class="col-md-9 col-sm-9">
-            <input type="month" class="form-control" required="required" name="month" id="month">
+            <input type="date" class="form-control" required="required" name="month" id="month">
           </div>
           <span id="monthEmpty" style="color: red;font-size: 15px;font-weight: bold;margin-left: 12px"></span>
         </div>
@@ -87,7 +87,7 @@
             $("#table").removeClass("d-none");
             var html = "";
             $.each(result.data,function(key,val){
-              html +="<tr><td>"+(++key)+"</td><td>"+val.id_no+"</td><td>"+val.name+"</td><td>"+val.salary+"/-</td><td>"+result.sal[--key]+"/-</td><td><a href='{{url('download-paySlip')}}'><button class='btn btn-sm btn-success'>Pay slip</button></a></td></tr>";
+              html +="<tr><td>"+(++key)+"</td><td>"+val.id_no+"</td><td>"+val.name+"</td><td>"+val.salary+"/-</td><td>"+result.sal[--key]+"/-</td><td><a href='{{url('download-paySlip')}}/"+val.id+"/"+month+"'><button class='btn btn-sm btn-success'>Pay slip</button></a></td></tr>";
             });
             $("#tbl_body").append(html);
           }
