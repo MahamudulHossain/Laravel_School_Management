@@ -25,4 +25,17 @@ class EmployeeGenerateSalController extends Controller
     	}
     	return response()->json(['data'=>$res,'sal'=>$result]);		   
     }
+
+    public function generatePDF(Request $req,$id,$date){
+        $userData = MultiUser::where('id',$id)->get(['salary','name','id_no']);
+        $format = strtotime($date);
+        $month = date('m', $format);
+        $monthInWord = date('F', $format);
+        $year = date('Y', $format);
+        $absentCount = EmployeeAttendance::where(['employee_id'=>$id,'attend_status'=>'absent'])->whereMonth('date', $month)->whereYear('date', $year)->count();
+        $dailySal = ceil($userData['0']->salary/30); 
+        $finalSal = $userData['0']->salary - ($dailySal * $absentCount);
+        $pdf = PDF::loadView('admin.users.employees.generate_salary.salary_paySlip', ['userInfo'=>$userData,'month'=>$monthInWord,'year'=>$year,'absent'=>$absentCount,'sal'=>$finalSal]);
+        return $pdf->stream('paySlip.pdf');
+    }
 }

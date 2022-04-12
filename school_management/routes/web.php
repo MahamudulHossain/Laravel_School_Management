@@ -167,6 +167,7 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/update_employee_attend/{date}',[EmployeeAttendController::class,'update']);
 	Route::get('/employee_salary_generation',[EmployeeGenerateSalController::class,'view']);
 	Route::get('get_emp_sal_info',[EmployeeGenerateSalController::class,'get_sal']);
+	Route::get('download-paySlip/{id}/{month}',[EmployeeGenerateSalController::class,'generatePDF']);
 
 });
 
