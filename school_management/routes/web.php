@@ -24,6 +24,8 @@ use App\Http\Controllers\employee\EmployeeSalController;
 use App\Http\Controllers\employee\EmployeeLeaveController;
 use App\Http\Controllers\employee\EmployeeAttendController;
 use App\Http\Controllers\employee\EmployeeGenerateSalController;
+use App\Http\Controllers\marks\StudentMarksController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -168,6 +170,8 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/employee_salary_generation',[EmployeeGenerateSalController::class,'view']);
 	Route::get('get_emp_sal_info',[EmployeeGenerateSalController::class,'get_sal']);
 	Route::get('download-paySlip/{id}/{month}',[EmployeeGenerateSalController::class,'generatePDF']);
+	//Marks Management
+	Route::get('/add_student_mark',[StudentMarksController::class,'view']);
 
 });
 
