@@ -172,6 +172,7 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('download-paySlip/{id}/{month}',[EmployeeGenerateSalController::class,'generatePDF']);
 	//Marks Management
 	Route::get('/add_student_mark',[StudentMarksController::class,'view']);
+	Route::get('get_all_sub',[StudentMarksController::class,'get_subjects']);
 
 });
 

@@ -130,16 +130,32 @@
           $("#clEmty").html("Please select class");
           return false;
         }
-        if(exm == 0){
-          $("#etEmty").html("Please select Exam Name");
-          return false;
-        }
         if(sub == 0){
           $("#subEmty").html("Please select Subject");
           return false;
         }
+        if(exm == 0){
+          $("#etEmty").html("Please select Exam Name");
+          return false;
+        }
         $.ajax({
           
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).on('change','#class_id',function(){
+        var clsId = $(this).val();
+        $.ajax({
+          url: "{{url('/get_all_sub')}}",
+          type: "GET",
+          data:{'cls_id':clsId},
+          success:function(result){
+            var html = "";
+            $.each(result.data,function(key,val){
+              console.log(val[0]['name']);
+            });
+          }
         });
       });
     </script>
