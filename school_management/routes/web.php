@@ -174,6 +174,7 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/add_student_mark',[StudentMarksController::class,'view']);
 	Route::get('get_all_sub',[StudentMarksController::class,'get_subjects']);
 	Route::get('get_student_info',[StudentMarksController::class,'get_stu_info']);
+	Route::post('/add_exam_number',[StudentMarksController::class,'store']);
 
 });
 

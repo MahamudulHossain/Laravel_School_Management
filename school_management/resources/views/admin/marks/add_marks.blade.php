@@ -149,7 +149,7 @@
             //console.log(result.roll['2']['roll']);
             var ht = "";
             $.each(result.data,function(key,val){
-              ht +="<tr><td>"+(++key)+"</td><td>"+val['0']['id_no']+"</td><td>"+val['0']['name']+"</td><td>"+result.roll[--key]['roll']+"</td><td><input type='number' class='form-control' ></td></tr>";
+              ht +="<tr><input type='hidden' name='student_id[]' value='"+val['0']['id']+"'><input type='hidden' name='id_no[]' value='"+val['0']['id_no']+"'><td>"+(++key)+"</td><td>"+val['0']['id_no']+"</td><td>"+val['0']['name']+"</td><td>"+result.assignStu[--key]['roll']+"</td><td><input type='number' class='form-control' name='marks[]'></td></tr>";
             });
             var btn= "<div style='margin-left:15px;'><button class='btn btn-success'>Add Number</button></div>";
             $("#tbl_body").append(ht);

@@ -11,6 +11,7 @@ use App\Models\Subject;
 use App\Models\AssignSubject;
 use App\Models\AssignStudent;
 use App\Models\MultiUser;
+use App\Models\StudentMarks;
 
 class StudentMarksController extends Controller
 {
@@ -37,6 +38,24 @@ class StudentMarksController extends Controller
         foreach ($stu as $key => $st) {
             $stuInfo[] = MultiUser::where('id',$st->id)->get();
         }
-        return response()->json(['roll'=>$stu,'data'=>$stuInfo]);
+        return response()->json(['assignStu'=>$stu,'data'=>$stuInfo]);
+    }
+
+    public function store(Request $req){
+        //dd($req->all());
+        $count = count($req->student_id);
+        for($i=0;$i<$count;$i++){
+            $mark = new StudentMarks;
+            $mark->student_id = $req->student_id[$i];
+            $mark->id_no = $req->id_no[$i];
+            $mark->class_id = $req->class_id;
+            $mark->year_id = $req->year_id;
+            $mark->assign_subject_id = $req->sub_id;
+            $mark->exam_type_id = $req->exam_id;
+            $mark->marks = $req->marks[$i];
+            $mark->save();
+        }
+        $req->session()->flash('message','Number Added Successfully');
+        return redirect('/add_student_mark'); 
     }
 }
