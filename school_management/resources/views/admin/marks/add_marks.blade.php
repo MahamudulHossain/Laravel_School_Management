@@ -66,7 +66,7 @@
           <label class="col-form-label col-md-3 col-sm-3 ">Subject</label>
           <div class="col-md-9 col-sm-9">
           <select class="form-control" name="sub_id" id="sub_id" required="required">
-            <option value="0">Select Subject</option>
+            
             
           </select>
           </div>
@@ -151,10 +151,13 @@
           type: "GET",
           data:{'cls_id':clsId},
           success:function(result){
+            $("#sub_id").empty();
             var html = "";
-            $.each(result.data,function(key,val){
-              console.log(val[0]['name']);
+              html += "<option value='0'>Select Subject</option>";
+            $.each(result,function(key,val){
+              html += "<option value='"+val['0']['id']+"'>"+val['0']['name']+"</option>";
             });
+            $("#sub_id").append(html);
           }
         });
       });

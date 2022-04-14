@@ -23,8 +23,8 @@ class StudentMarksController extends Controller
     	$cls = $req->cls_id;
     	$subjects = AssignSubject::where('class_name_id',$cls)->get('subject_id');
     	foreach ($subjects as $key => $sub) {
-    		$subName[] = Subject::where('id',$sub->subject_id)->get('name');
+    		$subName[] = Subject::where('id',$sub->subject_id)->get();
     	}
-    	return response()->json(['data'=>$subName]);
+    	return response()->json($subName);
     }
 }
