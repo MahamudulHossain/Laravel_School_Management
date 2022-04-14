@@ -9,6 +9,8 @@ use App\Models\ClassName;
 use App\Models\ExamType;
 use App\Models\Subject;
 use App\Models\AssignSubject;
+use App\Models\AssignStudent;
+use App\Models\MultiUser;
 
 class StudentMarksController extends Controller
 {
@@ -26,5 +28,15 @@ class StudentMarksController extends Controller
     		$subName[] = Subject::where('id',$sub->subject_id)->get();
     	}
     	return response()->json($subName);
+    }
+
+    public function get_stu_info(Request $req){
+        $yr = $req->yr_id;
+        $cls = $req->cls_id;
+        $stu = AssignStudent::where(['year_id'=>$yr,'class_id'=>$cls])->get();
+        foreach ($stu as $key => $st) {
+            $stuInfo[] = MultiUser::where('id',$st->id)->get();
+        }
+        return response()->json(['roll'=>$stu,'data'=>$stuInfo]);
     }
 }

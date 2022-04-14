@@ -37,6 +37,8 @@
 </div>
 <div class="x_content">
     <br />
+    <form class="form-label-left input_mask" method="post" action="{{url('add_exam_number')}}">
+      @csrf
       <div class="form-group row">
         <div class="col-md-3">
           <label class="col-form-label col-md-3 col-sm-3 ">Year</label>
@@ -88,7 +90,7 @@
           <a id="search" class="btn btn-primary" style="color: white">Search</a>
         </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row" id="table_div">
         <table class="table table-striped table-bordered d-none" style="width:100%" id="table">
         <thead>
           <tr>
@@ -96,10 +98,7 @@
             <th>ID No.</th>
             <th>Student Name</th>
             <th>Roll</th>
-            <th>Monthly Fee</th>
-            <th>Discount Amount</th>
-            <th>Final Fee</th>
-            <th>Action</th>
+            <th>Add Number</th>
           </tr>
         </thead>
         <tbody id="tbl_body">
@@ -107,6 +106,9 @@
         </tbody>  
         </table>
       </div>
+        
+    </form>
+
   </div>
               
 @section('scripts')
@@ -138,8 +140,22 @@
           $("#etEmty").html("Please select Exam Name");
           return false;
         }
+        $("#table").removeClass('d-none');
         $.ajax({
-          
+          url: "{{url('/get_student_info')}}",
+          type: "get",
+          data:{'yr_id':yr,'cls_id':cls},
+          success:function(result){
+            //console.log(result.roll['2']['roll']);
+            var ht = "";
+            $.each(result.data,function(key,val){
+              ht +="<tr><td>"+(++key)+"</td><td>"+val['0']['id_no']+"</td><td>"+val['0']['name']+"</td><td>"+result.roll[--key]['roll']+"</td><td><input type='number' class='form-control' ></td></tr>";
+            });
+            var btn= "<div style='margin-left:15px;'><button class='btn btn-success'>Add Number</button></div>";
+            $("#tbl_body").append(ht);
+            $("#table_div").append(btn);
+
+          }
         });
       });
     </script>
