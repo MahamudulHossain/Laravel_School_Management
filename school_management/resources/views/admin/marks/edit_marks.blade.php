@@ -37,7 +37,7 @@
 </div>
 <div class="x_content">
     <br />
-    <form class="form-label-left input_mask" method="post" action="{{url('add_exam_number')}}">
+    <form class="form-label-left input_mask" method="post" action="{{url('update_exam_number')}}">
       @csrf
       <div class="form-group row">
         <div class="col-md-3">
@@ -150,9 +150,9 @@
             //console.log(result.mark['0']['marks']);
             var ht = "";
             $.each(result.data,function(key,val){
-              ht +="<tr><input type='hidden' name='student_id[]' value='"+val['0']['id']+"'><input type='hidden' name='id_no[]' value='"+val['0']['id_no']+"'><td>"+(++key)+"</td><td>"+val['0']['id_no']+"</td><td>"+val['0']['name']+"</td><td>"+result.assignStu[--key]['roll']+"</td><td><input type='number' class='form-control' name='marks[]' value='"+result.mark[key++]['marks']+"'></td></tr>";
+              ht +="<tr><input type='hidden' name='student_id[]' value='"+val['0']['id']+"'><input type='hidden' name='id_no[]' value='"+val['0']['id_no']+"'><td>"+(++key)+"</td><td>"+val['0']['id_no']+"</td><td>"+val['0']['name']+"</td><td>"+result.assignStu[--key]['roll']+"</td><td><input type='number' class='form-control' name='marks[]' value='"+result.mark[key++]['marks']+"'><input type='hidden' name='num_id[]' value='"+result.mark[--key]['id']+"'></td></tr>";
             });
-            var btn= "<div style='margin-left:15px;'><button class='btn btn-success'>Add Number</button></div>";
+            var btn= "<div style='margin-left:15px;'><button class='btn btn-success'>Update Number</button></div>";
             $("#tbl_body").append(ht);
             $("#table_div").append(btn);
 

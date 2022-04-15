@@ -78,4 +78,22 @@ class StudentMarksController extends Controller
         }
         return response()->json(['assignStu'=>$stu,'data'=>$stuInfo,'mark'=>$stuMark]);
     }
+
+    public function update(Request $req){
+        //dd($req->all());
+        $count = count($req->student_id);
+        for($i=0;$i<$count;$i++){
+            StudentMarks::where('id',$req->num_id[$i])->update([
+                'student_id' => $req->student_id[$i],
+                'id_no' => $req->id_no[$i],
+                'class_id' => $req->class_id,
+                'year_id' => $req->year_id,
+                'assign_subject_id' => $req->sub_id,
+                'exam_type_id' => $req->exam_id,
+                'marks' => $req->marks[$i]
+            ]);
+        }
+        $req->session()->flash('message','Number Updated Successfully');
+        return redirect('/edit_student_mark'); 
+    }
 }
