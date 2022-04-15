@@ -94,6 +94,7 @@
                   <li><a><i class="fa fa-bars"></i> Marks Management <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{url('add_student_mark')}}">Add Marks</span></a></li>
+                      <li><a href="{{url('edit_student_mark')}}">Edit Marks</span></a></li>
                     </ul>
                   </li>
                 </ul>

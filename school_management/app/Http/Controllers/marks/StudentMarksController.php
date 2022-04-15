@@ -58,4 +58,24 @@ class StudentMarksController extends Controller
         $req->session()->flash('message','Number Added Successfully');
         return redirect('/add_student_mark'); 
     }
+
+    public function edit_view(){
+        $data['year'] = Year::all();
+        $data['className'] = ClassName::all();
+        $data['examType'] = ExamType::all();
+        return view('admin.marks.edit_marks',$data);
+    }
+
+    public function get_stu_mark(Request $req){
+        $yr = $req->yr_id;
+        $cls = $req->cls_id;
+        $sub = $req->sub_id;
+        $exm = $req->exam_id;
+         $stu = AssignStudent::where(['year_id'=>$yr,'class_id'=>$cls])->get();
+        foreach ($stu as $key => $st) {
+            $stuInfo[] = MultiUser::where('id',$st->id)->get();
+            $stuMark = StudentMarks::where(['year_id'=>$yr,'class_id'=>$cls,'assign_subject_id'=>$sub,'exam_type_id'=>$exm])->get();
+        }
+        return response()->json(['assignStu'=>$stu,'data'=>$stuInfo,'mark'=>$stuMark]);
+    }
 }
