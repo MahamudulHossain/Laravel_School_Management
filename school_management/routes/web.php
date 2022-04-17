@@ -25,6 +25,7 @@ use App\Http\Controllers\employee\EmployeeLeaveController;
 use App\Http\Controllers\employee\EmployeeAttendController;
 use App\Http\Controllers\employee\EmployeeGenerateSalController;
 use App\Http\Controllers\marks\StudentMarksController;
+use App\Http\Controllers\marks\GradePointController;
 
 
 /*
@@ -178,6 +179,9 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/edit_student_mark',[StudentMarksController::class,'edit_view']);
 	Route::get('get_student_marks',[StudentMarksController::class,'get_stu_mark']);
 	Route::post('/update_exam_number',[StudentMarksController::class,'update']);
+	//Grade Point Management
+	Route::get('/view_grade_point',[GradePointController::class,'view']);
+	Route::get('/add_grade_point',[GradePointController::class,'add_form']);
 
 });
 
