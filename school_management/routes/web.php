@@ -182,6 +182,8 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	//Grade Point Management
 	Route::get('/view_grade_point',[GradePointController::class,'view']);
 	Route::get('/add_grade_point',[GradePointController::class,'add_form']);
+	Route::post('/store_grade',[GradePointController::class,'store']);
+
 
 });
 
