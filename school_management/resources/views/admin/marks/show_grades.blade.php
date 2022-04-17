@@ -46,6 +46,7 @@
         <th>Grade Point</th>
         <th>Number</th>
         <th>Point</th>
+        <th>Remarks</th>
 	      <th>Action</th>
 	    </tr>
 	  </thead>
@@ -57,8 +58,9 @@
         <td>{{$gp->grade_point}}</td>
         <td>{{$gp->start_mark}} - {{$gp->end_mark}}</td>
         <td>{{$gp->start_point}} - {{$gp->end_point}}</td>
+        <td>{{$gp->remarks}}</td>
 	      <td>
-	      	<a href="{{url('employee_salary_increment',$gp->id)}}"><button class="btn btn-sm btn-primary">Edit</button></a>
+	      	<a href="{{url('edit_grade',$gp->id)}}"><button class="btn btn-sm btn-primary">Edit</button></a>
 	      </td>
 	    </tr>
 	    @endforeach
