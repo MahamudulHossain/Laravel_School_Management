@@ -55,13 +55,29 @@
 	  	@foreach($allData as $key=>$StuFee)
 	    <tr>
           <td>{{$key + 1}}</td>
-          <td>{{$StuFee->student_id}}</td>
-          <td>{{$StuFee->student_id}}</td>
-          <td>{{$StuFee->year_id}}</td>
-          <td>{{$StuFee->class_id}}</td>
-          <td>{{$StuFee->fee_category_id}}</td>
+          <td><?php
+            $stuId = App\Models\MultiUser::where('id',$StuFee->student_id)->get();
+            echo $stuId['0']['id_no'];
+            ?>
+          </td>
+          <td>{{$stuId['0']['name']}}</td>
+          <td><?php
+            $stuYear = App\Models\Year::where('id',$StuFee->year_id)->get();
+            echo $stuYear['0']['year'];
+            ?>
+          </td>
+          <td><?php
+            $stuClass = App\Models\ClassName::where('id',$StuFee->class_id)->get();
+            echo $stuClass['0']['name'];
+            ?>  
+          </td>
+          <td><?php
+            $FeeType = App\Models\Fee::where('id',$StuFee->fee_category_id)->get();
+            echo $FeeType['0']['name'];
+            ?>
+          </td>
           <td>{{$StuFee->amount}}</td>
-          <td>{{$StuFee->date}}</td>
+          <td><?php echo date('F,Y',strtotime($StuFee->date));?></td>
 	    </tr>
 	    @endforeach
 	  </tbody>
