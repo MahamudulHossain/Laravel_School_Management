@@ -188,6 +188,8 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/update_grade/{id}',[GradePointController::class,'update']);
 	//Students Fee
 	Route::get('/students_fee',[StudentFeeController::class,'view']);
+	Route::get('/student_pay_fees',[StudentFeeController::class,'pay_form']);
+	Route::get('/get_student_fee_info',[StudentFeeController::class,'get_student_fee_info']);
 
 });
 
