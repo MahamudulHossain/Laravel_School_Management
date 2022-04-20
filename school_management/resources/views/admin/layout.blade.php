@@ -98,6 +98,11 @@
                       <li><a href="{{url('view_grade_point')}}">Grade Point</span></a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-money"></i> Account Management <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{url('students_fee')}}">Students Fee</span></a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
 

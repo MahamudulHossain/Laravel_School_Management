@@ -26,6 +26,7 @@ use App\Http\Controllers\employee\EmployeeAttendController;
 use App\Http\Controllers\employee\EmployeeGenerateSalController;
 use App\Http\Controllers\marks\StudentMarksController;
 use App\Http\Controllers\marks\GradePointController;
+use App\Http\Controllers\accounts\StudentFeeController;
 
 
 /*
@@ -185,6 +186,8 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::post('/store_grade',[GradePointController::class,'store']);
 	Route::get('/edit_grade/{id}',[GradePointController::class,'edit_form']);
 	Route::post('/update_grade/{id}',[GradePointController::class,'update']);
+	//Students Fee
+	Route::get('/students_fee',[StudentFeeController::class,'view']);
 
 });
 
