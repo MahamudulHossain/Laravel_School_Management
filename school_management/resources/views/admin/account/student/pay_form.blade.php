@@ -145,13 +145,14 @@
           type: "get",
           data:{'yr_id':yr,'cls_id':cls,'fee_category_id':fc},
           success:function(result){
-            console.log(result);
+           // console.log(result.stuInfo['0']['0']['id_no']);
             //console.log(result.roll['2']['roll']);
             var ht = "";
-            $.each(result.data,function(key,val){
-              ht +="<tr><input type='hidden' name='student_id[]' value='"+val['0']['id']+"'><input type='hidden' name='id_no[]' value='"+val['0']['id_no']+"'><td>"+(++key)+"</td><td>"+val['0']['id_no']+"</td><td>"+val['0']['name']+"</td><td>"+result.assignStu[--key]['roll']+"</td><td><input type='number' class='form-control' name='marks[]'></td></tr>";
+            $.each(result.stuInfo,function(key,val){
+              ht +="<tr><input type='hidden' name='student_id[]' value='"+val['0']['id']+"'><input type='hidden' name='amount[]' value='"+(result.feeAmount['0']['amount']-(result.feeAmount['0']['amount']*result.stuDis[key]['0']['discount']/100))+"'><td>"+(key+1)+"</td><td>"+val['0']['id_no']+"</td><td>"+val['0']['name']+"</td><td>"+result.feeAmount['0']['amount']+"/-</td><td>"+result.stuDis[key]['0']['discount']+"%</td><td>"+(result.feeAmount['0']['amount']-(result.feeAmount['0']['amount']*result.stuDis[key]['0']['discount']/100))+"/-</td><td><input type='checkbox' name='status'"+result.status[key]+"></td></tr>";
             });
-            //$("#tbl_body").append(ht);
+            ht +="<tr><td><button class='btn btn-success'>Submit</button></td></tr>";
+            $("#tbl_body").append(ht);
           }
         });
       });

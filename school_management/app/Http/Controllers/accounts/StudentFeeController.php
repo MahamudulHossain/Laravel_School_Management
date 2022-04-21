@@ -34,9 +34,9 @@ class StudentFeeController extends Controller
             $stuDis[] = DiscountStudent::where(['assign_student_id'=>$st->student_id,'fee_category_id'=>$req->fee_category_id])->get();
             $account = AccountStudentFee::where(['year_id'=>$yr,'class_id'=>$cls,'student_id'=>$st->student_id,'fee_category_id'=>$req->fee_category_id])->count();
             if($account){
-            	$paid[] = 'yes';
+            	$paid[] = 'checked';
             }else{
-            	$paid[] = 'no';
+            	$paid[] = '';
             }
         }
         $feeAmount = FeeAmount::where(['class_name_id'=>$cls,'fee_id'=>$req->fee_category_id])->get();
