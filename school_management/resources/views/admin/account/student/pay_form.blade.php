@@ -37,7 +37,7 @@
 </div>
 <div class="x_content">
     <br />
-    <form class="form-label-left input_mask" method="post" action="{{url('add_exam_number')}}">
+    <form class="form-label-left input_mask" method="post" action="{{url('pay_students_fee')}}">
       @csrf
       <div class="form-group row">
         <div class="col-md-3">
@@ -149,7 +149,7 @@
             //console.log(result.roll['2']['roll']);
             var ht = "";
             $.each(result.stuInfo,function(key,val){
-              ht +="<tr><input type='hidden' name='student_id[]' value='"+val['0']['id']+"'><input type='hidden' name='amount[]' value='"+(result.feeAmount['0']['amount']-(result.feeAmount['0']['amount']*result.stuDis[key]['0']['discount']/100))+"'><td>"+(key+1)+"</td><td>"+val['0']['id_no']+"</td><td>"+val['0']['name']+"</td><td>"+result.feeAmount['0']['amount']+"/-</td><td>"+result.stuDis[key]['0']['discount']+"%</td><td>"+(result.feeAmount['0']['amount']-(result.feeAmount['0']['amount']*result.stuDis[key]['0']['discount']/100))+"/-</td><td><input type='checkbox' name='status'"+result.status[key]+"></td></tr>";
+              ht +="<tr><input type='hidden' name='student_id[]' value='"+val['0']['id']+"'><input type='hidden' name='amount[]' value='"+(result.feeAmount['0']['amount']-(result.feeAmount['0']['amount']*result.stuDis[key]['0']['discount']/100))+"'><td>"+(key+1)+"</td><td>"+val['0']['id_no']+"</td><td>"+val['0']['name']+"</td><td>"+result.feeAmount['0']['amount']+"/-</td><td>"+result.stuDis[key]['0']['discount']+"%</td><td>"+(result.feeAmount['0']['amount']-(result.feeAmount['0']['amount']*result.stuDis[key]['0']['discount']/100))+"/-</td><td><input type='checkbox' name='status"+key+"'"+result.status[key]+"></td></tr>";
             });
             ht +="<tr><td><button class='btn btn-success'>Submit</button></td></tr>";
             $("#tbl_body").append(ht);

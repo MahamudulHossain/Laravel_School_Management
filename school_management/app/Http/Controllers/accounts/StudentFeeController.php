@@ -42,4 +42,22 @@ class StudentFeeController extends Controller
         $feeAmount = FeeAmount::where(['class_name_id'=>$cls,'fee_id'=>$req->fee_category_id])->get();
         return response()->json(['stuInfo'=>$stuInfo,'stuDis'=>$stuDis,'feeAmount'=>$feeAmount,'status'=>$paid]);
     }
+    public function pay(Request $req){
+        $count = count($req->student_id);
+        for($i=0; $i<$count; $i++){
+            if($req->status.$i){
+                $chk = AccountStudentFee::where(['year_id'=>$req->year_id,'class_id'=>$req->class_id,'student_id'=>$req->student_id[$i],'fee_category_id'=>$req->fee_category_id])->count();
+                if(! $chk){
+                    $store = new AccountStudentFee;
+                    $store->year_id = $req->year_id;
+                    $store->class_id = $req->class_id;
+                    $store->student_id = $req->student_id[$i];
+                    $store->fee_category_id = $req->fee_category_id;
+                    $store->date = $req->date;
+                    $store->amount = $req->amount;
+                    $store->save();
+                }
+            }
+        }
+    }
 }
