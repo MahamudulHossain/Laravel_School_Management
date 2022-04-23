@@ -37,7 +37,7 @@
 </div>
 <div class="x_content">
     <br />
-    <form class="form-label-left input_mask" method="post" action="{{url('pay_students_fee')}}">
+    <form class="form-label-left input_mask" method="post" action="{{url('pay_employees_fee')}}">
       @csrf
       <div class="form-group row">
         <div class="col-md-3">

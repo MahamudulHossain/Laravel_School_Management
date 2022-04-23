@@ -26,7 +26,7 @@ class EmployeeFeeController extends Controller
     		$absentCount = EmployeeAttendance::where(['employee_id'=>$val->id,'attend_status'=>'absent'])->whereMonth('date', $month)->whereYear('date', $year)->count();
     		$dailySal = ceil($val->salary/30); 
     		$result[] = $val->salary - ($dailySal * $absentCount);
-    		$account = AccountEmployeeFee::whereMonth('date', $month)->whereYear('date', $year)->count();
+    		$account = AccountEmployeeFee::where('employee_id',$val->id)->whereMonth('date', $month)->whereYear('date', $year)->count();
             if($account){
             	$paid[] = 'checked';
             }else{
@@ -34,5 +34,27 @@ class EmployeeFeeController extends Controller
             }
     	}
     	return response()->json(['data'=>$res,'sal'=>$result,'status'=>$paid]);	
+    }
+    public function pay(Request $req){
+        // dd($req->all());
+        $count = count($req->emp_id);
+        for($i=0; $i<$count; $i++){
+            $stat = "status".$i;
+            if(isset($req->$stat)){
+            	$format = strtotime($req->date);
+		        $month = date('m', $format);
+		    	$year = date('Y', $format);
+                $chk = AccountEmployeeFee::where('employee_id',$req->emp_id[$i])->whereMonth('date', $month)->whereYear('date', $year)->count();
+                if($chk == '0'){
+                    $store = new AccountEmployeeFee;
+                    $store->employee_id = $req->emp_id[$i];
+                    $store->date = $req->date;
+                    $store->amount = $req->amount[$i];
+                    $store->save();
+                }
+            }
+        }
+        $req->session()->flash('message','Salary Paid Successfully');
+        return redirect('/employees_fee'); 
     }
 }

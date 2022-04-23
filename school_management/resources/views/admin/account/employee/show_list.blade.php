@@ -60,7 +60,7 @@
           </td>
           <td>{{$empId['0']['name']}}</td>
           <td>{{$empId['0']['salary']}}/-</td>
-          <td> ---- </td>
+          <td> {{$EmpFee->amount}}/-</td>
           <td><?php echo date('F,Y',strtotime($EmpFee->date));?></td>
 	    </tr>
 	    @endforeach
