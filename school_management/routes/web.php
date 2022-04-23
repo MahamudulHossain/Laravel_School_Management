@@ -27,6 +27,7 @@ use App\Http\Controllers\employee\EmployeeGenerateSalController;
 use App\Http\Controllers\marks\StudentMarksController;
 use App\Http\Controllers\marks\GradePointController;
 use App\Http\Controllers\accounts\StudentFeeController;
+use App\Http\Controllers\accounts\EmployeeFeeController;
 
 
 /*
@@ -191,6 +192,11 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/student_pay_fees',[StudentFeeController::class,'pay_form']);
 	Route::get('/get_student_fee_info',[StudentFeeController::class,'get_student_fee_info']);
 	Route::post('/pay_students_fee',[StudentFeeController::class,'pay']);
+	//Employees Fee
+	Route::get('/employees_fee',[EmployeeFeeController::class,'view']);
+	Route::get('/employee_pay_fees',[EmployeeFeeController::class,'pay_form']);
+	Route::get('/get_employee_fee_info',[EmployeeFeeController::class,'get_employee_fee_info']);
+	Route::post('/pay_employees_fee',[EmployeeFeeController::class,'pay']);
 
 
 });
