@@ -102,6 +102,7 @@
                     <ul class="nav child_menu">
                       <li><a href="{{url('students_fee')}}">Students Fee</span></a></li>
                       <li><a href="{{url('employees_fee')}}">Employee Fee</span></a></li>
+                      <li><a href="{{url('others_cost')}}">Others Cost</span></a></li>
                     </ul>
                   </li>
                 </ul>

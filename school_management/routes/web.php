@@ -28,6 +28,7 @@ use App\Http\Controllers\marks\StudentMarksController;
 use App\Http\Controllers\marks\GradePointController;
 use App\Http\Controllers\accounts\StudentFeeController;
 use App\Http\Controllers\accounts\EmployeeFeeController;
+use App\Http\Controllers\accounts\OthersCostController;
 
 
 /*
@@ -197,6 +198,11 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/employee_pay_fees',[EmployeeFeeController::class,'pay_form']);
 	Route::get('/get_employee_fee_info',[EmployeeFeeController::class,'get_employee_fee_info']);
 	Route::post('/pay_employees_fee',[EmployeeFeeController::class,'pay']);
+	//Others Cost
+	Route::get('/others_cost',[OthersCostController::class,'view']);
+	Route::get('/others_cost_form',[OthersCostController::class,'cost_form']);
+	Route::post('/others_cost_submit',[OthersCostController::class,'save']);
+	Route::get('/others_cost_delete/{id}',[OthersCostController::class,'delete']);
 
 
 });
