@@ -29,6 +29,7 @@ use App\Http\Controllers\marks\GradePointController;
 use App\Http\Controllers\accounts\StudentFeeController;
 use App\Http\Controllers\accounts\EmployeeFeeController;
 use App\Http\Controllers\accounts\OthersCostController;
+use App\Http\Controllers\accounts\ExtraIncomeController;
 
 
 /*
@@ -203,6 +204,11 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/others_cost_form',[OthersCostController::class,'cost_form']);
 	Route::post('/others_cost_submit',[OthersCostController::class,'save']);
 	Route::get('/others_cost_delete/{id}',[OthersCostController::class,'delete']);
+	//Extra Income
+	Route::get('/extra_income',[ExtraIncomeController::class,'view']);
+	Route::get('/extra_income_form',[ExtraIncomeController::class,'income_form']);
+	Route::post('/extra_income_submit',[ExtraIncomeController::class,'save']);
+	Route::get('/extra_income_delete/{id}',[ExtraIncomeController::class,'delete']);
 
 
 });
