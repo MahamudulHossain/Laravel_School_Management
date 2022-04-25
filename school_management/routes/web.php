@@ -30,7 +30,7 @@ use App\Http\Controllers\accounts\StudentFeeController;
 use App\Http\Controllers\accounts\EmployeeFeeController;
 use App\Http\Controllers\accounts\OthersCostController;
 use App\Http\Controllers\accounts\ExtraIncomeController;
-
+use App\Http\Controllers\reports\ProfitReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -209,6 +209,9 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	Route::get('/extra_income_form',[ExtraIncomeController::class,'income_form']);
 	Route::post('/extra_income_submit',[ExtraIncomeController::class,'save']);
 	Route::get('/extra_income_delete/{id}',[ExtraIncomeController::class,'delete']);
+	// Report Management
+	Route::get('/show_profit',[ProfitReportController::class,'view']);
+	Route::get('/calculate_profit',[ProfitReportController::class,'calculateProfit']);
 
 
 });

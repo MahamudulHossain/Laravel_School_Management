@@ -106,6 +106,11 @@
                       <li><a href="{{url('others_cost')}}">Others Cost</span></a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-file"></i> Report Management <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{url('show_profit')}}">Monthly/Yearly Profit</span></a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
 
