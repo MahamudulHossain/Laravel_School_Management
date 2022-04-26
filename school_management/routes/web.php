@@ -212,7 +212,7 @@ Route::group(['middleware'=>'admin_auth'],function () {
 	// Report Management
 	Route::get('/show_profit',[ProfitReportController::class,'view']);
 	Route::get('/calculate_profit',[ProfitReportController::class,'calculateProfit']);
-
+	Route::post('/genPDF',[ProfitReportController::class,'generatePDF']);
 
 });
 

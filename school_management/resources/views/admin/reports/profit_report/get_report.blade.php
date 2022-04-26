@@ -37,8 +37,8 @@
 </div>
 <div class="x_content">
     <br />
-    <form class="form-label-left input_mask">
-      
+    <form class="form-label-left input_mask" action="{{url('genPDF')}}" method="post">
+      @csrf
       <div class="form-group row">
         <div class="col-md-5">
           <label class="col-form-label col-md-3 col-sm-3 ">Start Date</label>
@@ -106,7 +106,7 @@
           data:{'start_date':sdate,'end_date':edate},
           success:function(result){
             var ht = "";
-            ht += "<tr><td>"+result.sFee+"/-</td><td>"+result.eIncome+"/-</td><td>"+(result.sFee + result.eIncome)+"/-</td><td>"+result.empSal+"/-</td><td>"+result.othCost+"/-</td><td>"+(result.empSal + result.othCost)+"/-</td><td>"+((result.sFee + result.eIncome) - (result.empSal + result.othCost))+"/-</td><td><button class='btn btn-primary btn-sm'>PDF</button></td></tr>";
+            ht += "<tr><input type='hidden' name='sFee' value='"+result.sFee+"'><input type='hidden' name='eIncome' value='"+result.eIncome+"'><input type='hidden' name='tIncome' value='"+(result.sFee+result.eIncome)+"'><input type='hidden' name='empSal' value='"+result.empSal+"'><input type='hidden' name='othCost' value='"+result.othCost+"'><input type='hidden' name='tCost' value='"+(result.empSal+result.othCost)+"'><td>"+result.sFee+"/-</td><td>"+result.eIncome+"/-</td><td>"+(result.sFee + result.eIncome)+"/-</td><td>"+result.empSal+"/-</td><td>"+result.othCost+"/-</td><td>"+(result.empSal + result.othCost)+"/-</td><td>"+((result.sFee + result.eIncome) - (result.empSal + result.othCost))+"/-</td><td><button class='btn btn-primary btn-sm'>PDF</button></td></tr>";
             $("#tbl_body").append(ht);
           }
         });
